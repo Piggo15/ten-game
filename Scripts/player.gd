@@ -4,8 +4,10 @@ extends CharacterBody3D
 @export var sprint_speed = 7.5
 @export var jump_velocity = 4.5
 @export var sensitivity = 0.005
+@export var rest_fov = 75.0
+@export var fov_change_speed = 1.5
 @export var view_bob = true
-@export var bob_frequency = 2
+@export var bob_frequency = 2.0
 @export var bob_amplitude = 0.08
 
 var speed = walk_speed
@@ -58,6 +60,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3)
+	
+	# fov
+	var velocity_clamped = clamp(velocity.length(), 0.5, sprint_speed * 2)
+	var target_fov = rest_fov + fov_change_speed * velocity_clamped
+	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
 	# head bob
 	bob_t += delta * velocity.length() * float(is_on_floor())

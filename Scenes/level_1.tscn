@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://c13voxbg0hp5d"]
+[gd_scene load_steps=7 format=3 uid="uid://c13voxbg0hp5d"]
 
-[ext_resource type="Material" uid="uid://dbnf0tc0op76j" path="res://Materials/Debug-Ground.tres" id="1_8ffim"]
 [ext_resource type="PackedScene" uid="uid://cxouty6o3ocgv" path="res://Prefab Scenes/player.tscn" id="1_vk57k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk57k"]
@@ -12,13 +11,12 @@ sky_material = SubResource("ProceduralSkyMaterial_vk57k")
 background_mode = 2
 sky = SubResource("Sky_8ffim")
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qqy1o"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vk57k"]
+vertex_color_use_as_albedo = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_vk57k"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_8ffim"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xfk5q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ffim"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.25490198, 1, 1)
 
 [node name="Level 1" type="Node3D"]
 
@@ -28,34 +26,35 @@ environment = SubResource("Environment_xfk5q")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.71721476, 0.47654918, -0.50843275, 0, 0.7296135, 0.68385977, 0.6968522, -0.4904743, 0.52328956, 0, 0, 0)
 
-[node name="Ground" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("WorldBoundaryShape3D_qqy1o")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(64, 0, 0, 0, 1.005, 0, 0, 0, 64, 0, 0, 0)
-material_override = ExtResource("1_8ffim")
-mesh = SubResource("PlaneMesh_vk57k")
-
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_vk57k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Cube" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50328064, -4)
+[node name="Boxes" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube"]
-mesh = SubResource("BoxMesh_8ffim")
+[node name="CSGBox3D" type="CSGBox3D" parent="Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.9995003, 0)
+material_override = SubResource("StandardMaterial3D_vk57k")
+use_collision = true
+flip_faces = true
+size = Vector3(32, 16, 32)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
-shape = SubResource("BoxShape3D_xfk5q")
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
+use_collision = true
+size = Vector3(2, 1, 2)
 
-[node name="Cube2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50328064, -9.966866)
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3777843, 0.5, -4)
+use_collision = true
+size = Vector3(2, 1, 2)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube2"]
-transform = Transform3D(7.765077, 0, 0, 0, 4.2201424, 0, 0, 0, 1, 0, 1.5165691, 0)
-mesh = SubResource("BoxMesh_8ffim")
+[node name="CSGBox3D5" type="CSGBox3D" parent="Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.622215, 0.5, 1)
+use_collision = true
+size = Vector3(2, 1, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube2"]
-transform = Transform3D(7.765077, 0, 0, 0, 4.2201424, 0, 0, 0, 1, 0, 1.5165691, 0)
-shape = SubResource("BoxShape3D_xfk5q")
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6222157, 1, 4)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_8ffim")
