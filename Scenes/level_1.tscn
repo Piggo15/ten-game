@@ -35,26 +35,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.9995003, 0)
 material_override = SubResource("StandardMaterial3D_vk57k")
 use_collision = true
+collision_layer = 8
+collision_mask = 7
 flip_faces = true
 size = Vector3(32, 16, 32)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Boxes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
 use_collision = true
+collision_layer = 8
+collision_mask = 7
 size = Vector3(2, 1, 2)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Boxes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3777843, 0.5, -4)
 use_collision = true
+collision_layer = 8
+collision_mask = 7
 size = Vector3(2, 1, 2)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Boxes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.622215, 0.5, 1)
 use_collision = true
+collision_layer = 8
+collision_mask = 7
 size = Vector3(2, 1, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Boxes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6222157, 1, 4)
 use_collision = true
+collision_layer = 8
+collision_mask = 7
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_8ffim")
