@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxouty6o3ocgv"]
+[gd_scene load_steps=7 format=3 uid="uid://dlg6seov50do7"]
 
 [ext_resource type="Script" uid="uid://o4w4rkpe4e2p" path="res://Scripts/player.gd" id="1_6wh1l"]
 [ext_resource type="Script" uid="uid://ub0mij42ktyu" path="res://Scripts/shooter.gd" id="2_b6oax"]
+[ext_resource type="AudioStream" uid="uid://dyq53tnee1b22" path="res://Audio/Sfx/Shoot_Sfx.wav" id="3_5fgyy"]
 [ext_resource type="Texture2D" uid="uid://c4uigy5cg772" path="res://Textures/Crosshair.png" id="3_c2hg6"]
+[ext_resource type="AudioStream" uid="uid://rtmlxpjrhato" path="res://Audio/Sfx/Footstep_Sfx.wav" id="4_64qng"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7kb5"]
 
@@ -16,6 +18,10 @@ shape = SubResource("CapsuleShape3D_d7kb5")
 [node name="Shooter" type="Node3D" parent="."]
 script = ExtResource("2_b6oax")
 
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="Shooter"]
+stream = ExtResource("3_5fgyy")
+bus = &"Shooter"
+
 [node name="CameraPosition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
@@ -23,6 +29,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
 [node name="BulletSpawnPosition" type="Node3D" parent="CameraPosition/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_64qng")
+bus = &"Footsteps"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -49,3 +61,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_c2hg6")
 expand_mode = 1
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 138.33
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 32
+text = "Ammo: 10/10"

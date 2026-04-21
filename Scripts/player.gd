@@ -15,6 +15,7 @@ var bob_t = 0.0
 
 @onready var camera = $CameraPosition/Camera3D
 @onready var camera_position = $CameraPosition
+@onready var footstep_sfx = $FootstepSound
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -76,4 +77,16 @@ func headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * bob_frequency) * bob_amplitude
 	pos.x = cos(time * bob_frequency / 2) * bob_amplitude
+	play_footstep_sound(pos.y)
 	return pos
+
+var footstep_sound_ready = true
+
+func play_footstep_sound(pos_y):
+	
+	if pos_y <= -bob_amplitude * 0.9 and footstep_sound_ready:
+		footstep_sfx.pitch_scale = randf_range(0.9, 1.2)
+		footstep_sfx.play()
+		footstep_sound_ready = false
+	elif pos_y > 0:
+		footstep_sound_ready = true

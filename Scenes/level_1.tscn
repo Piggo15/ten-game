@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c13voxbg0hp5d"]
+[gd_scene load_steps=8 format=3 uid="uid://c13voxbg0hp5d"]
 
-[ext_resource type="PackedScene" uid="uid://cxouty6o3ocgv" path="res://Prefab Scenes/player.tscn" id="1_vk57k"]
+[ext_resource type="PackedScene" uid="uid://dlg6seov50do7" path="res://Prefab Scenes/Player.tscn" id="1_vk57k"]
+[ext_resource type="PackedScene" uid="uid://dsu8u5prumqk2" path="res://Prefab Scenes/enemy.tscn" id="2_8ffim"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk57k"]
 
@@ -68,3 +69,6 @@ collision_layer = 8
 collision_mask = 7
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_8ffim")
+
+[node name="Enemy" parent="." instance=ExtResource("2_8ffim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9)
