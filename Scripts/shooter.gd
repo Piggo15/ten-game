@@ -7,6 +7,7 @@ var bullet_scene = preload("res://Prefab Scenes/bulllet.tscn")
 
 @onready var bullet_spawn_position = $"../CameraPosition/Camera3D/BulletSpawnPosition"
 @onready var sfx_player = $ShootSound
+@onready var ammo_label  = $"../Control/AmmoLabel"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,3 +25,4 @@ func _process(_delta: float) -> void:
 		sfx_player.pitch_scale = randf_range(0.9, 1.2)
 		sfx_player.play()
 		ammo_amount -= 1
+		ammo_label.text = "Ammo: " + str(ammo_amount) + "/10"

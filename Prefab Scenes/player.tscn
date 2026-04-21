@@ -62,11 +62,11 @@ grow_vertical = 2
 texture = ExtResource("3_c2hg6")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Control"]
+[node name="AmmoLabel" type="Label" parent="Control"]
 layout_mode = 1
 offset_left = 32.0
-offset_top = 32.0
-offset_right = 138.33
-offset_bottom = 55.0
+offset_top = 16.0
+offset_right = 237.0
+offset_bottom = 61.0
 theme_override_font_sizes/font_size = 32
 text = "Ammo: 10/10"

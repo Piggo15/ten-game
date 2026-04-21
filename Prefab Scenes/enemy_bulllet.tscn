@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm5aay3l4ur1c"]
+
+[ext_resource type="Script" uid="uid://ka5ca6j7a4ts" path="res://Scripts/bulllet.gd" id="1_ibu63"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fmi78"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_k1jty"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1jty"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.8784314, 0, 0, 1)
+
+[node name="Bulllet" type="Node3D"]
+script = ExtResource("1_ibu63")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 10
+continuous_cd = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("SphereShape3D_fmi78")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("SphereMesh_k1jty")
+surface_material_override/0 = SubResource("StandardMaterial3D_k1jty")

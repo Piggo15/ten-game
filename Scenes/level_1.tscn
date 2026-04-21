@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c13voxbg0hp5d"]
+[gd_scene load_steps=9 format=3 uid="uid://c13voxbg0hp5d"]
 
-[ext_resource type="PackedScene" uid="uid://dlg6seov50do7" path="res://Prefab Scenes/Player.tscn" id="1_vk57k"]
+[ext_resource type="PackedScene" uid="uid://dlg6seov50do7" path="res://Prefab Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="PackedScene" uid="uid://dsu8u5prumqk2" path="res://Prefab Scenes/enemy.tscn" id="2_8ffim"]
+[ext_resource type="PackedScene" uid="uid://if0b35trtwoh" path="res://Prefab Scenes/timer.tscn" id="3_xfk5q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk57k"]
 
@@ -72,3 +73,5 @@ material = SubResource("StandardMaterial3D_8ffim")
 
 [node name="Enemy" parent="." instance=ExtResource("2_8ffim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9)
+
+[node name="Timer" parent="." instance=ExtResource("3_xfk5q")]
