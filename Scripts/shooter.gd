@@ -2,7 +2,7 @@ extends Node3D
 
 var bullet_scene = preload("res://Prefab Scenes/bulllet.tscn")
 
-@export var shooter_force = 30
+@export var shooter_force = 60
 @export var ammo_amount = 10
 
 @onready var bullet_spawn_position = $"../CameraPosition/Camera3D/BulletSpawnPosition"

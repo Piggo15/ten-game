@@ -1,7 +1,9 @@
 extends Node3D
 
 var time_active = 0
-var despawn_time = 10
+var despawn_time = 3
+
+@onready var rb = $RigidBody3D
 
 func _ready() -> void:
 	pass # Replace with function body.

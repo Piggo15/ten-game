@@ -12,10 +12,13 @@ extends CharacterBody3D
 
 var speed = walk_speed
 var bob_t = 0.0
+var land_sound_ready = false
 
 @onready var camera = $CameraPosition/Camera3D
 @onready var camera_position = $CameraPosition
 @onready var footstep_sfx = $FootstepSound
+@onready var jump_sfx = $JumpSound
+@onready var level_manager = get_tree().current_scene
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -32,10 +35,19 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
 	# Handle jump.
+	if is_on_floor() and land_sound_ready:
+		land_sound_ready = false
+		# just re using footstep sound for landing for now
+		footstep_sfx.pitch_scale = randf_range(0.9, 1.2)
+		footstep_sfx.play()
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
+		jump_sfx.pitch_scale = randf_range(0.9, 1.2)
+		jump_sfx.play()
+		land_sound_ready = true
 	
 	# Handle sprint
 	
@@ -90,3 +102,7 @@ func play_footstep_sound(pos_y):
 		footstep_sound_ready = false
 	elif pos_y > 0:
 		footstep_sound_ready = true
+
+func _on_hurtbox_body_entered(_body: Node3D) -> void:
+	#replace with actual death screen maybe
+	level_manager.load_scene(level_manager.current_loaded_scene_id)

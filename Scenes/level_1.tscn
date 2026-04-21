@@ -29,6 +29,7 @@ environment = SubResource("Environment_xfk5q")
 transform = Transform3D(0.71721476, 0.47654918, -0.50843275, 0, 0.7296135, 0.68385977, 0.6968522, -0.4904743, 0.52328956, 0, 0, 0)
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_vk57k")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Boxes" type="Node3D" parent="."]
@@ -73,5 +74,11 @@ material = SubResource("StandardMaterial3D_8ffim")
 
 [node name="Enemy" parent="." instance=ExtResource("2_8ffim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_8ffim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.849155, 1, -2.9962883)
+
+[node name="Enemy3" parent="." instance=ExtResource("2_8ffim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.150845, 1, -7.9962883)
 
 [node name="Timer" parent="." instance=ExtResource("3_xfk5q")]

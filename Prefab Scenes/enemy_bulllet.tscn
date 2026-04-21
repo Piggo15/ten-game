@@ -15,8 +15,8 @@ albedo_color = Color(0.8784314, 0, 0, 1)
 script = ExtResource("1_ibu63")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-collision_layer = 4
-collision_mask = 10
+collision_layer = 16
+collision_mask = 8
 continuous_cd = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
