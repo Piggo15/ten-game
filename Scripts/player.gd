@@ -2,7 +2,8 @@ extends CharacterBody3D
 
 @export var walk_speed = 5.0
 @export var sprint_speed = 7.5
-@export var jump_velocity = 4.5
+@export var jump_velocity = 4.
+@export var start_y_rotation = 0
 @export var sensitivity = 0.005
 @export var rest_fov = 75.0
 @export var fov_change_speed = 1.5
@@ -37,6 +38,7 @@ var won = false
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	level_label.text = "Level " + str(level)
+	camera_position.rotation.y = start_y_rotation
 
 func _unhandled_input(event: InputEvent) -> void:
 	if died or won:

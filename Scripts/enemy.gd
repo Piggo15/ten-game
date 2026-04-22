@@ -18,6 +18,9 @@ var is_alive = true
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	die(body)
 
+func _ready() -> void:
+	shoot_timer = randf_range(1, 4)
+
 func _process(delta: float) -> void:
 	
 	if !is_alive:

@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://q1cahcxdwrlb"]
+
+[ext_resource type="Script" uid="uid://dujojpk6krm1q" path="res://Scripts/level.gd" id="1_qf6rc"]
+[ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_53xsp"]
+[ext_resource type="PackedScene" uid="uid://dlg6seov50do7" path="res://Prefab Scenes/player.tscn" id="3_5e78q"]
+[ext_resource type="PackedScene" uid="uid://if0b35trtwoh" path="res://Prefab Scenes/timer.tscn" id="4_l4wr6"]
+[ext_resource type="Script" uid="uid://dg74j230loa6g" path="res://Scripts/enemy_manager.gd" id="5_5rvg2"]
+[ext_resource type="PackedScene" uid="uid://dsu8u5prumqk2" path="res://Prefab Scenes/enemy.tscn" id="6_jtv8s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk57k"]
+
+[sub_resource type="Sky" id="Sky_8ffim"]
+sky_material = SubResource("ProceduralSkyMaterial_vk57k")
+
+[sub_resource type="Environment" id="Environment_xfk5q"]
+background_mode = 2
+sky = SubResource("Sky_8ffim")
+
+[node name="Level 3" type="Node3D"]
+script = ExtResource("1_qf6rc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xfk5q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.71721476, 0.47654918, -0.50843275, 0, 0.7296135, 0.68385977, 0.6968522, -0.4904743, 0.52328956, 0, 0, 0)
+
+[node name="Boxes" parent="." instance=ExtResource("2_53xsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005044937, -0.028506279, -0.0063991547)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_5e78q")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+start_y_rotation = 180
+level = 3
+
+[node name="Timer" parent="." instance=ExtResource("4_l4wr6")]
+unique_name_in_owner = true
+
+[node name="EnemyManager" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_5rvg2")
+
+[node name="Enemy" parent="EnemyManager" instance=ExtResource("6_jtv8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 10.525933, 14.732906)
+
+[node name="Enemy2" parent="EnemyManager" instance=ExtResource("6_jtv8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 5.9700456, 4.9945188)
+
+[node name="Enemy3" parent="EnemyManager" instance=ExtResource("6_jtv8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.93409157, 5.6194525)
+
+[node name="Control" type="Control" parent="EnemyManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EnemyCountLabel" type="Label" parent="EnemyManager/Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 179.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 32
+text = "Enemies: "
+metadata/_edit_use_anchors_ = true

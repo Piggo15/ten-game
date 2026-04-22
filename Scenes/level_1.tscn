@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c13voxbg0hp5d"]
+[gd_scene load_steps=10 format=3 uid="uid://c13voxbg0hp5d"]
 
 [ext_resource type="Script" uid="uid://dujojpk6krm1q" path="res://Scripts/level.gd" id="1_6444e"]
 [ext_resource type="PackedScene" uid="uid://dlg6seov50do7" path="res://Prefab Scenes/player.tscn" id="1_vk57k"]
 [ext_resource type="Script" uid="uid://dg74j230loa6g" path="res://Scripts/enemy_manager.gd" id="2_7p6j4"]
 [ext_resource type="PackedScene" uid="uid://dsu8u5prumqk2" path="res://Prefab Scenes/enemy.tscn" id="2_8ffim"]
+[ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_evi0p"]
 [ext_resource type="PackedScene" uid="uid://if0b35trtwoh" path="res://Prefab Scenes/timer.tscn" id="3_xfk5q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk57k"]
@@ -15,13 +16,6 @@ sky_material = SubResource("ProceduralSkyMaterial_vk57k")
 background_mode = 2
 sky = SubResource("Sky_8ffim")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vk57k"]
-vertex_color_use_as_albedo = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ffim"]
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0.25490198, 1, 1)
-
 [node name="Level 1" type="Node3D"]
 script = ExtResource("1_6444e")
 
@@ -31,49 +25,12 @@ environment = SubResource("Environment_xfk5q")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.71721476, 0.47654918, -0.50843275, 0, 0.7296135, 0.68385977, 0.6968522, -0.4904743, 0.52328956, 0, 0, 0)
 
-[node name="Boxes" type="Node3D" parent="."]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Boxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.9995003, 0)
-material_override = SubResource("StandardMaterial3D_vk57k")
-use_collision = true
-collision_layer = 8
-collision_mask = 7
-flip_faces = true
-size = Vector3(32, 16, 32)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Boxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
-use_collision = true
-collision_layer = 8
-collision_mask = 7
-size = Vector3(2, 1, 2)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Boxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3777843, 0.5, -4)
-use_collision = true
-collision_layer = 8
-collision_mask = 7
-size = Vector3(2, 1, 2)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Boxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.622215, 0.5, 1)
-use_collision = true
-collision_layer = 8
-collision_mask = 7
-size = Vector3(2, 1, 2)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Boxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.869347, 1, 4)
-use_collision = true
-collision_layer = 8
-collision_mask = 7
-size = Vector3(8.335571, 2, 2)
-material = SubResource("StandardMaterial3D_8ffim")
+[node name="Boxes" parent="." instance=ExtResource("2_evi0p")]
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_vk57k")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+start_y_rotation = -90
 
 [node name="Timer" parent="." instance=ExtResource("3_xfk5q")]
 unique_name_in_owner = true
@@ -83,13 +40,7 @@ unique_name_in_owner = true
 script = ExtResource("2_7p6j4")
 
 [node name="Enemy" parent="EnemyManager" instance=ExtResource("2_8ffim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9)
-
-[node name="Enemy2" parent="EnemyManager" instance=ExtResource("2_8ffim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.849155, 1, -2.9962883)
-
-[node name="Enemy3" parent="EnemyManager" instance=ExtResource("2_8ffim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.150845, 1, -7.9962883)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6, 5.232906)
 
 [node name="Control" type="Control" parent="EnemyManager"]
 layout_mode = 3

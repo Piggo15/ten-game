@@ -1,7 +1,7 @@
 extends Node3D
 
 var time_active = 0
-var despawn_time = 3
+var despawn_time = 1
 
 @onready var rb = $RigidBody3D
 

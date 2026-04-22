@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkt8nmcxmuk1w"]
+[gd_scene load_steps=3 format=3 uid="uid://bkt8nmcxmuk1w"]
 
 [ext_resource type="Script" uid="uid://tkxuekqneqpe" path="res://Scripts/level_manager.gd" id="1_f6wcy"]
+[ext_resource type="AudioStream" uid="uid://b7dcb6cgu284m" path="res://Audio/Music/Main_Menu_Music.wav" id="2_2up0c"]
 
 [node name="Level_Manager" type="Node3D"]
 script = ExtResource("1_f6wcy")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_2up0c")
+attenuation_model = 3
+autoplay = true
+bus = &"Music"
