@@ -13,24 +13,33 @@ extends CharacterBody3D
 var speed = walk_speed
 var bob_t = 0.0
 var land_sound_ready = false
+var footstep_sound_ready = true
+var died = false
 
 @onready var camera = $CameraPosition/Camera3D
 @onready var camera_position = $CameraPosition
 @onready var footstep_sfx = $FootstepSound
 @onready var jump_sfx = $JumpSound
+@onready var timer = %Timer
 @onready var level_manager = get_tree().current_scene
+@onready var enemy_manager = %EnemyManager
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
-	
+	if died:
+		return
+		
 	if event is InputEventMouseMotion:
 		camera_position.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _physics_process(delta: float) -> void:
+	
+	if died:
+		return
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -92,8 +101,6 @@ func headbob(time) -> Vector3:
 	play_footstep_sound(pos.y)
 	return pos
 
-var footstep_sound_ready = true
-
 func play_footstep_sound(pos_y):
 	
 	if pos_y <= -bob_amplitude * 0.9 and footstep_sound_ready:
@@ -105,4 +112,8 @@ func play_footstep_sound(pos_y):
 
 func _on_hurtbox_body_entered(_body: Node3D) -> void:
 	#replace with actual death screen maybe
-	level_manager.load_scene(level_manager.current_loaded_scene_id)
+	die()
+
+func die():
+	died = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

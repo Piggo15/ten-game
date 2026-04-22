@@ -38,6 +38,14 @@ offset_bottom = 193.0
 theme_override_font_sizes/font_size = 64
 text = "Start"
 
+[node name="CreditsButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_top = 194.0
+offset_right = 227.0
+offset_bottom = 290.0
+theme_override_font_sizes/font_size = 64
+text = "Credits"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_48xlc")
 
@@ -50,3 +58,4 @@ transform = Transform3D(0.8931988, 0.3365272, -0.29823712, 0, 0.6632473, 0.74840
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/CreditsButton" to="." method="_on_credits_button_pressed"]

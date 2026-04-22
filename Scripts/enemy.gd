@@ -4,6 +4,7 @@ extends Node3D
 @onready var death_sfx = $DeathSound
 @onready var shoot_sfx = $ShootSound
 @onready var bullet_spawn_position = $ShootPoint
+@onready var enemy_manager = get_parent()
 
 var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 var is_alive = true
@@ -15,10 +16,7 @@ var is_alive = true
 
 # for hurt box
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	area_3D.queue_free()
-	body.queue_free()
-	death_sfx.play()
-	is_alive = false
+	die(body)
 
 func _process(delta: float) -> void:
 	
@@ -37,3 +35,15 @@ func _process(delta: float) -> void:
 		shoot_timer = shoot_cooldown + (randf() * additional_random_time_mult)
 		shoot_sfx.pitch_scale = randf_range(0.9, 1.2)
 		shoot_sfx.play()
+
+func die(body: Node3D = null, subtract_enemy_count: bool = true):
+	area_3D.queue_free()
+	
+	if body != null:
+		body.queue_free()
+	
+	death_sfx.play()
+	is_alive = false
+	
+	if subtract_enemy_count:
+		enemy_manager.enemy_count -= 1

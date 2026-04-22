@@ -6,6 +6,7 @@ var timer = 10.0
 @onready var level_manager = get_tree().current_scene
 @onready var first_five_sfx = $FirstFivePlayer
 @onready var second_five_sfx = $SecondFivePlayer
+@onready var player = %CharacterBody3D
 
 var int_time = int(timer)
 
@@ -14,9 +15,8 @@ func _process(delta: float) -> void:
 	timer -= delta
 	display_label.text = str(int(timer) + 1)
 	
-	# TEMP, replace with death screen
 	if timer <= 0:
-		level_manager.load_scene(level_manager.current_loaded_scene_id)
+		player.die()
 	
 	if int_time == (int(timer) + 1):
 		

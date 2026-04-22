@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://13rxnx3lcplg"]
+
+[ext_resource type="Script" uid="uid://bp6i480le6mpv" path="res://Scripts/death_screen.gd" id="1_smd1q"]
+
+[node name="DeathScreen" type="Node3D"]
+script = ExtResource("1_smd1q")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
