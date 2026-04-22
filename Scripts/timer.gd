@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	display_label.text = str(int(timer) + 1)
 	
 	if timer <= 0:
-		player.die()
+		player.die("Ran Out Of Time!")
 		out_of_time_sfx.play()
 	
 	if int_time == (int(timer) + 1):

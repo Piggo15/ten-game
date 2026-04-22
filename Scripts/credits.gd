@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var level_manager = get_tree().current_scene
-@onready var death_message_label = $Control/DeathMessageLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,8 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func update_death_message(message):
-	death_message_label.text = message
 
-func _on_reset_button_pressed() -> void:
-	level_manager.load_scene(level_manager.current_loaded_scene_id)
+func _on_back_button_pressed() -> void:
+	level_manager.load_scene(0)

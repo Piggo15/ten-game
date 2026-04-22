@@ -9,6 +9,7 @@ func _ready() -> void:
 	scene_list.append(preload("res://Scenes/main_menu.tscn"))
 	scene_list.append(preload("res://Scenes/credits.tscn"))
 	scene_list.append(preload("res://Scenes/level_1.tscn"))
+	scene_list.append(preload("res://Scenes/level_2.tscn"))
 	
 	load_scene(0)
 

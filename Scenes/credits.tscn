@@ -1,12 +1,17 @@
-[gd_scene format=3 uid="uid://bfy2conf35mm6"]
+[gd_scene load_steps=2 format=3 uid="uid://bfy2conf35mm6"]
+
+[ext_resource type="Script" uid="uid://y5wtqcp83xl4" path="res://Scripts/credits.gd" id="1_r18jl"]
 
 [node name="Credits" type="Node3D"]
+script = ExtResource("1_r18jl")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CreditsLabel" type="Label" parent="Control"]
 layout_mode = 0
@@ -14,3 +19,46 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 64
 text = "Credits"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 125.0
+offset_right = 1128.0
+offset_bottom = 554.0
+theme_override_font_sizes/font_size = 32
+text = "Game By Cole Hauser
+
+Made for 2026 Tech High Game / Sim Game Jam
+
+Softwares: Godot, GIMP
+
+Special Thanks: Ronald Flowers (Mentor), Cameron Galiano \"Zinklof\" 
+(Mentor), David Hundley (Helped With the Title), Daliah Tyson (Emotional 
+Support)"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "© 2026 Cole Hauser. All Rights Reserved"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 829.0
+offset_top = 90.0
+offset_right = 1032.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 32
+text = "Back To Title"
+
+[connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]

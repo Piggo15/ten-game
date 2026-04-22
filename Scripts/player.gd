@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var view_bob = true
 @export var bob_frequency = 2.0
 @export var bob_amplitude = 0.08
+@export var level = 1
+@export var in_final_level = false
 
 var speed = walk_speed
 var bob_t = 0.0
@@ -28,10 +30,13 @@ var won = false
 @onready var enemy_manager = %EnemyManager
 @onready var ui = $Control
 @onready var win_screen_scene = preload("res://Prefab Scenes/win_screen.tscn")
+@onready var final_win_screen_scene = preload("res://Prefab Scenes/final_win_screen.tscn")
 @onready var death_screen_scene = preload("res://Prefab Scenes/death_screen.tscn")
+@onready var level_label: Label = $Control/LevelLabel
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	level_label.text = "Level " + str(level)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if died or won:
@@ -118,20 +123,28 @@ func play_footstep_sound(pos_y):
 
 func _on_hurtbox_body_entered(_body: Node3D) -> void:
 	if !died and !won:
-		die()
+		die("Died to Bullet!")
 
-func die():
+func die(message):
 	died = true
 	clear_game()
 	var death_screen = death_screen_scene.instantiate()
 	get_parent().add_child(death_screen)
 	death_sfx.play()
+	death_screen.update_death_message(message)
 
 func win():
 	won = true
 	clear_game()
-	var win_screen = win_screen_scene.instantiate()
-	add_child(win_screen)
+	
+	if in_final_level:
+		var final_win_screen = final_win_screen_scene.instantiate()
+		add_child(final_win_screen)
+	
+	else:
+		var win_screen = win_screen_scene.instantiate()
+		add_child(win_screen)
+	
 	win_sfx.play()
 
 func clear_game():
