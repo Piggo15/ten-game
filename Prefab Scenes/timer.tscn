@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://if0b35trtwoh"]
+[gd_scene load_steps=5 format=3 uid="uid://if0b35trtwoh"]
 
 [ext_resource type="Script" uid="uid://dkqxdtqxbqxlu" path="res://Scripts/timer.gd" id="1_vv58o"]
 [ext_resource type="AudioStream" uid="uid://darwutlvlx3re" path="res://Audio/Sfx/Timer_First_Five_Sfx.wav" id="2_7ixws"]
 [ext_resource type="AudioStream" uid="uid://du1j4rd6oeed0" path="res://Audio/Sfx/Timer_Last_Five_Sfx.wav" id="3_5suwe"]
-
+[ext_resource type="AudioStream" uid="uid://nt2bnj0ot0np" path="res://Audio/Sfx/Out_Of_Time_Sfx.wav" id="4_5suwe"]
 
 [node name="Timer" type="Node3D"]
 script = ExtResource("1_vv58o")
@@ -35,3 +35,6 @@ stream = ExtResource("2_7ixws")
 
 [node name="SecondFivePlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_5suwe")
+
+[node name="OutOfTimePlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_5suwe")

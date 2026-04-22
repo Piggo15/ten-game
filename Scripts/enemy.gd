@@ -42,8 +42,9 @@ func die(body: Node3D = null, subtract_enemy_count: bool = true):
 	if body != null:
 		body.queue_free()
 	
-	death_sfx.play()
 	is_alive = false
 	
 	if subtract_enemy_count:
-		enemy_manager.enemy_count -= 1
+		enemy_manager.update_enemy_count(-1)
+		enemy_manager.update_text()
+		death_sfx.play()

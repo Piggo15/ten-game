@@ -15,20 +15,26 @@ var bob_t = 0.0
 var land_sound_ready = false
 var footstep_sound_ready = true
 var died = false
+var won = false
 
 @onready var camera = $CameraPosition/Camera3D
 @onready var camera_position = $CameraPosition
 @onready var footstep_sfx = $FootstepSound
 @onready var jump_sfx = $JumpSound
+@onready var death_sfx = $DeathSound
+@onready var win_sfx = $WinSound
 @onready var timer = %Timer
 @onready var level_manager = get_tree().current_scene
 @onready var enemy_manager = %EnemyManager
+@onready var ui = $Control
+@onready var win_screen_scene = preload("res://Prefab Scenes/win_screen.tscn")
+@onready var death_screen_scene = preload("res://Prefab Scenes/death_screen.tscn")
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if died:
+	if died or won:
 		return
 		
 	if event is InputEventMouseMotion:
@@ -38,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if died:
+	if died or won:
 		return
 	
 	# Add the gravity.
@@ -111,9 +117,26 @@ func play_footstep_sound(pos_y):
 		footstep_sound_ready = true
 
 func _on_hurtbox_body_entered(_body: Node3D) -> void:
-	#replace with actual death screen maybe
-	die()
+	if !died and !won:
+		die()
 
 func die():
 	died = true
+	clear_game()
+	var death_screen = death_screen_scene.instantiate()
+	get_parent().add_child(death_screen)
+	death_sfx.play()
+
+func win():
+	won = true
+	clear_game()
+	var win_screen = win_screen_scene.instantiate()
+	add_child(win_screen)
+	win_sfx.play()
+
+func clear_game():
+	enemy_manager.clear_enemies()
+	enemy_manager.enemy_count_label.queue_free()
+	timer.display_label.queue_free()
+	ui.queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
