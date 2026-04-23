@@ -23,10 +23,10 @@ text = "Credits"
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 125.0
+offset_top = 144.0
 offset_right = 1128.0
-offset_bottom = 554.0
-theme_override_font_sizes/font_size = 32
+offset_bottom = 573.0
+theme_override_font_sizes/font_size = 16
 text = "Game By Cole Hauser
 
 Made for 2026 Tech High Game / Sim Game Jam

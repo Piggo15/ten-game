@@ -28,6 +28,7 @@ var won = false
 @onready var win_sfx = $WinSound
 @onready var timer = %Timer
 @onready var level_manager = get_tree().current_scene
+@onready var settings_manager = get_tree().current_scene.get_child(1)
 @onready var enemy_manager = %EnemyManager
 @onready var ui = $Control
 @onready var win_screen_scene = preload("res://Prefab Scenes/win_screen.tscn")
@@ -39,6 +40,8 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	level_label.text = "Level " + str(level)
 	camera_position.rotation.y = start_y_rotation
+	
+	sensitivity = settings_manager.sensitivity
 
 func _unhandled_input(event: InputEvent) -> void:
 	if died or won:

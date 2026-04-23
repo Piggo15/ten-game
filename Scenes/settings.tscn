@@ -7,6 +7,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -11.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4geyq")
@@ -26,4 +28,114 @@ offset_bottom = 128.0
 theme_override_font_sizes/font_size = 32
 text = "Back To Title"
 
+[node name="HSlider_Sensitivity" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -8.0
+offset_right = 384.0
+offset_bottom = 8.0
+grow_vertical = 2
+min_value = 0.004
+max_value = 0.015
+step = 0.001
+value = 0.004
+
+[node name="Label" type="Label" parent="HSlider_Sensitivity"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -4.0
+offset_right = -48.0
+offset_bottom = 19.0
+text = "Sensitivity"
+
+[node name="HSlider_Master_Volume" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 127.0
+offset_top = 24.0
+offset_right = 383.0
+offset_bottom = 40.0
+grow_vertical = 2
+max_value = 1.0
+step = 0.1
+value = 0.004
+
+[node name="Label" type="Label" parent="HSlider_Master_Volume"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -4.0
+offset_right = -10.0
+offset_bottom = 19.0
+text = "Master Volume"
+
+[node name="HSlider_Sfx_Volume" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 127.0
+offset_top = 56.0
+offset_right = 383.0
+offset_bottom = 72.0
+grow_vertical = 2
+max_value = 1.0
+step = 0.1
+value = 0.004
+
+[node name="Label" type="Label" parent="HSlider_Sfx_Volume"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -4.0
+offset_right = -48.0
+offset_bottom = 19.0
+text = "SFX Volume"
+
+[node name="HSlider_Music_Volume" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 127.0
+offset_top = 87.0
+offset_right = 383.0
+offset_bottom = 103.0
+grow_vertical = 2
+max_value = 1.0
+step = 0.1
+value = 0.004
+
+[node name="Label" type="Label" parent="HSlider_Music_Volume"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -4.0
+offset_right = -48.0
+offset_bottom = 19.0
+text = "Music Volume"
+
+[node name="CheckBox_Vsync" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 443.0
+offset_right = 151.0
+offset_bottom = 467.0
+action_mode = 0
+
+[node name="Label" type="Label" parent="CheckBox_Vsync"]
+layout_mode = 0
+offset_left = -128.0
+offset_right = -88.0
+offset_bottom = 23.0
+text = "Vsync"
+
+[connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="pressed" from="BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
+[connection signal="value_changed" from="HSlider_Sensitivity" to="." method="_on_h_slider_sensitivity_value_changed"]
+[connection signal="value_changed" from="HSlider_Master_Volume" to="." method="_on_h_slider_master_volume_value_changed"]
+[connection signal="value_changed" from="HSlider_Sfx_Volume" to="." method="_on_h_slider_sfx_volume_value_changed"]
+[connection signal="value_changed" from="HSlider_Music_Volume" to="." method="_on_h_slider_music_volume_value_changed"]
+[connection signal="pressed" from="CheckBox_Vsync" to="." method="_on_check_box_vsync_pressed"]
