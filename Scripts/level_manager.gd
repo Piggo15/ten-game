@@ -8,6 +8,7 @@ var current_loaded_scene_id = 0
 func _ready() -> void:
 	scene_list.append(preload("res://Scenes/main_menu.tscn"))
 	scene_list.append(preload("res://Scenes/credits.tscn"))
+	scene_list.append(preload("res://Scenes/settings.tscn"))
 	scene_list.append(preload("res://Scenes/level_1.tscn"))
 	scene_list.append(preload("res://Scenes/level_2.tscn"))
 	scene_list.append(preload("res://Scenes/level_3.tscn"))

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ch1w7kgs2c1ma" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_48xlc"]
-[ext_resource type="PackedScene" uid="uid://da54wx5na2xn" path="res://Mesh/Robot.fbx" id="3_1ehe0"]
+[ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="3_opfnp"]
 [ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="4_ce3w2"]
 [ext_resource type="PackedScene" uid="uid://b1ddqmf33pc36" path="res://Prefab Scenes/robot_hover_ps.tscn" id="5_n45e2"]
 
@@ -76,13 +76,29 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -113.5
-offset_top = 49.0
+offset_top = 146.0
 offset_right = 113.5
-offset_bottom = 145.0
+offset_bottom = 242.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Credits"
+
+[node name="SettingsButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 49.0
+offset_right = 128.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Settings"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_48xlc")
@@ -95,17 +111,19 @@ transform = Transform3D(0.8931988, 0.3365272, -0.29823712, 0, 0.6632473, 0.74840
 
 [node name="Boxes" parent="." instance=ExtResource("2_48xlc")]
 
-[node name="Robot" parent="." instance=ExtResource("3_1ehe0")]
-transform = Transform3D(-0.13697961, -0.008392351, -0.4807975, 0, 0.4999239, -0.008726204, 0.48087066, -0.002390624, -0.13695876, -3, 4.5, 0)
+[node name="Robot" parent="." instance=ExtResource("3_opfnp")]
+transform = Transform3D(-0.1369796, -0.008392351, -0.4807975, 2.3279521e-10, 0.4999239, -0.008726204, 0.48087063, -0.002390624, -0.13695876, -3, 4.5, 0)
 script = ExtResource("4_ce3w2")
 
 [node name="Robot_Hover_PS" parent="Robot" instance=ExtResource("5_n45e2")]
+transform = Transform3D(-0.27395922, 4.6566123e-10, 0.9617415, -0.016784698, 0.9998477, -0.0047812476, -0.9615947, -0.017452404, -0.27391747, 0, 0, 0)
 
-[node name="Robot2" parent="." instance=ExtResource("3_1ehe0")]
+[node name="Robot2" parent="." instance=ExtResource("3_opfnp")]
 transform = Transform3D(-0.49178573, 0.018766033, 0.08828724, 0, 0.4890738, -0.10395585, -0.09025963, -0.102248006, -0.48103905, 15, 5, 0)
 script = ExtResource("4_ce3w2")
 
 [node name="Robot_Hover_PS" parent="Robot2" instance=ExtResource("5_n45e2")]
+transform = Transform3D(-0.9835714, 0, -0.18051925, 0.03753206, 0.97814745, -0.20449598, 0.17657447, -0.20791166, -0.962078, 0, 0, 0)
 
 [node name="BulletMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 10.5, 7, 3.5)
@@ -124,3 +142,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_n45e2")
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Control/SettingsButton" to="." method="_on_settings_button_pressed"]

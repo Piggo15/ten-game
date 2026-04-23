@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://djtgr63yjrlyl" path="res://Scripts/enemy.gd" id="1_it5v7"]
 [ext_resource type="AudioStream" uid="uid://bl3hua8sa1wgb" path="res://Audio/Sfx/Enemy_Death_Sfx.wav" id="2_6qdrn"]
-[ext_resource type="PackedScene" uid="uid://da54wx5na2xn" path="res://Mesh/Robot.fbx" id="2_64nv4"]
 [ext_resource type="AudioStream" uid="uid://bhd31jntx8d2p" path="res://Audio/Sfx/Shoot_V2_Sfx.wav" id="3_fc2oc"]
 [ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="3_nlgev"]
+[ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="4_ssq45"]
 [ext_resource type="PackedScene" uid="uid://b1ddqmf33pc36" path="res://Prefab Scenes/robot_hover_ps.tscn" id="6_ssq45"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qdrn"]
@@ -39,11 +39,11 @@ transform = Transform3D(0.5489946, 0, 0, 0, 0.35407054, 0, 0, 0, 0.36787164, 0, 
 visible = false
 mesh = SubResource("BoxMesh_6qdrn")
 
-[node name="Robot" parent="Area3D" instance=ExtResource("2_64nv4")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
-
 [node name="ShootPoint" type="Node3D" parent="Area3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.4, -0.8)
+
+[node name="Robot" parent="Area3D" instance=ExtResource("4_ssq45")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.2, 0)
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_6qdrn")

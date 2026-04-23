@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://deqqmb0ud3rx3"]
+
+[ext_resource type="PackedScene" uid="uid://da54wx5na2xn" path="res://Mesh/Robot.fbx" id="1_usb5a"]
+[ext_resource type="Material" uid="uid://dqclviccv3x4r" path="res://Materials/robot_material.tres" id="2_ifnl0"]
+
+[node name="Robot" instance=ExtResource("1_usb5a")]
+
+[node name="Robot" parent="." index="0"]
+material_override = ExtResource("2_ifnl0")
