@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://drph8xnn8u4fk"]
+[gd_scene load_steps=13 format=3 uid="uid://drph8xnn8u4fk"]
 
 [ext_resource type="Script" uid="uid://ch1w7kgs2c1ma" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_48xlc"]
 [ext_resource type="PackedScene" uid="uid://da54wx5na2xn" path="res://Mesh/Robot.fbx" id="3_1ehe0"]
 [ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="4_ce3w2"]
+[ext_resource type="PackedScene" uid="uid://b1ddqmf33pc36" path="res://Prefab Scenes/robot_hover_ps.tscn" id="5_n45e2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_28flt"]
 
@@ -98,9 +99,13 @@ transform = Transform3D(0.8931988, 0.3365272, -0.29823712, 0, 0.6632473, 0.74840
 transform = Transform3D(-0.13697961, -0.008392351, -0.4807975, 0, 0.4999239, -0.008726204, 0.48087066, -0.002390624, -0.13695876, -3, 4.5, 0)
 script = ExtResource("4_ce3w2")
 
+[node name="Robot_Hover_PS" parent="Robot" instance=ExtResource("5_n45e2")]
+
 [node name="Robot2" parent="." instance=ExtResource("3_1ehe0")]
 transform = Transform3D(-0.49178573, 0.018766033, 0.08828724, 0, 0.4890738, -0.10395585, -0.09025963, -0.102248006, -0.48103905, 15, 5, 0)
 script = ExtResource("4_ce3w2")
+
+[node name="Robot_Hover_PS" parent="Robot2" instance=ExtResource("5_n45e2")]
 
 [node name="BulletMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 10.5, 7, 3.5)

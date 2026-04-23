@@ -64,6 +64,3 @@ offset_bottom = 109.0
 theme_override_font_sizes/font_size = 32
 text = "Enemies: "
 metadata/_edit_use_anchors_ = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)

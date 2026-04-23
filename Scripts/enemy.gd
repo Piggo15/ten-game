@@ -3,7 +3,8 @@ extends Node3D
 @onready var area_3D = $Area3D
 @onready var death_sfx = $DeathSound
 @onready var shoot_sfx = $ShootSound
-@onready var bullet_spawn_position = $ShootPoint
+@onready var bullet_spawn_position = $Area3D/ShootPoint
+@onready var robot_hover_ps = $Robot_Hover_PS
 @onready var enemy_manager = get_parent()
 
 var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
@@ -26,7 +27,7 @@ func _process(delta: float) -> void:
 	if !is_alive:
 		return
 	
-	look_at(%CharacterBody3D.global_position, Vector3.UP)
+	area_3D.look_at(%CharacterBody3D.global_position, Vector3.UP)
 	
 	shoot_timer -= delta
 	if shoot_timer <= 0:
@@ -41,6 +42,7 @@ func _process(delta: float) -> void:
 
 func die(body: Node3D = null, subtract_enemy_count: bool = true):
 	area_3D.queue_free()
+	robot_hover_ps.queue_free()
 	
 	if body != null:
 		body.queue_free()

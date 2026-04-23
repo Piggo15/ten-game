@@ -1,3 +1,37 @@
-[gd_scene format=3 uid="uid://b1ddqmf33pc36"]
+[gd_scene load_steps=8 format=3 uid="uid://b1ddqmf33pc36"]
+
+[sub_resource type="Curve" id="Curve_1brsh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.72727275, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xbg1e"]
+curve = SubResource("Curve_1brsh")
+
+[sub_resource type="Curve" id="Curve_v84pu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.3370787), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1brsh"]
+curve = SubResource("Curve_v84pu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xbg1e"]
+scale_curve = SubResource("CurveTexture_1brsh")
+color = Color(1, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_xbg1e")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v84pu"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_0f4ri"]
+material = SubResource("StandardMaterial3D_v84pu")
 
 [node name="Robot_Hover_PS" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 3
+lifetime = 0.25
+speed_scale = 0.25
+fixed_fps = 240
+process_material = SubResource("ParticleProcessMaterial_xbg1e")
+draw_pass_1 = SubResource("TorusMesh_0f4ri")
