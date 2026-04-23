@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsu8u5prumqk2"]
+[gd_scene load_steps=9 format=3 uid="uid://dsu8u5prumqk2"]
 
 [ext_resource type="Script" uid="uid://djtgr63yjrlyl" path="res://Scripts/enemy.gd" id="1_it5v7"]
 [ext_resource type="AudioStream" uid="uid://bl3hua8sa1wgb" path="res://Audio/Sfx/Enemy_Death_Sfx.wav" id="2_6qdrn"]
+[ext_resource type="PackedScene" uid="uid://da54wx5na2xn" path="res://Mesh/Robot.fbx" id="2_64nv4"]
 [ext_resource type="AudioStream" uid="uid://bhd31jntx8d2p" path="res://Audio/Sfx/Shoot_V2_Sfx.wav" id="3_fc2oc"]
+[ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="3_nlgev"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qdrn"]
+height = 1.8751526
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6qdrn"]
 
@@ -14,18 +17,26 @@
 script = ExtResource("1_it5v7")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 collision_layer = 2
 collision_mask = 4
+script = ExtResource("3_nlgev")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29807183, 0)
 shape = SubResource("CapsuleShape3D_6qdrn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+visible = false
 mesh = SubResource("CapsuleMesh_6qdrn")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Area3D"]
 transform = Transform3D(0.5489946, 0, 0, 0, 0.35407054, 0, 0, 0, 0.36787164, 0, 0.57216215, -0.3226524)
+visible = false
 mesh = SubResource("BoxMesh_6qdrn")
+
+[node name="Robot" parent="Area3D" instance=ExtResource("2_64nv4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
 
 [node name="ShootPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)

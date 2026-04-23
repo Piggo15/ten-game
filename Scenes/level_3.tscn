@@ -42,13 +42,13 @@ unique_name_in_owner = true
 script = ExtResource("5_5rvg2")
 
 [node name="Enemy" parent="EnemyManager" instance=ExtResource("6_jtv8s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 10.525933, 14.732906)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 11.554912, 14.732906)
 
 [node name="Enemy2" parent="EnemyManager" instance=ExtResource("6_jtv8s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 5.9700456, 4.9945188)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6.999024, 4.9945188)
 
 [node name="Enemy3" parent="EnemyManager" instance=ExtResource("6_jtv8s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.93409157, 5.6194525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.9630699, 5.6194525)
 
 [node name="Control" type="Control" parent="EnemyManager"]
 layout_mode = 3

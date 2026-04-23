@@ -40,16 +40,16 @@ unique_name_in_owner = true
 script = ExtResource("5_7huqf")
 
 [node name="Enemy" parent="EnemyManager" instance=ExtResource("6_di0d6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 10.525933, -10.267094)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 11.492007, -10.267094)
 
 [node name="Enemy2" parent="EnemyManager" instance=ExtResource("6_di0d6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.9700456, -4.0054812)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 4.9361196, -4.0054812)
 
 [node name="Enemy3" parent="EnemyManager" instance=ExtResource("6_di0d6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16134548, 5.9340916, 8.049047)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16134548, 6.9001656, 8.049047)
 
 [node name="Enemy4" parent="EnemyManager" instance=ExtResource("6_di0d6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0.93409157, -14.880548)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 1.9001656, -14.880548)
 
 [node name="Control" type="Control" parent="EnemyManager"]
 layout_mode = 3

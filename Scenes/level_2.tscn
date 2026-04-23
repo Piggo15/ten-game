@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 level = 2
 
 [node name="Boxes" parent="." instance=ExtResource("3_cggpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032377243, 0.08947563, 0.02273941)
 
 [node name="Timer" parent="." instance=ExtResource("3_055b2")]
 unique_name_in_owner = true
@@ -40,10 +41,10 @@ unique_name_in_owner = true
 script = ExtResource("4_2mgoq")
 
 [node name="Enemy" parent="EnemyManager" instance=ExtResource("5_uhnj4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 11.5, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 12.287972, -12)
 
 [node name="Enemy2" parent="EnemyManager" instance=ExtResource("5_uhnj4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.849155, 1, 10.003712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.849155, 1.7879729, 10.003712)
 
 [node name="Control" type="Control" parent="EnemyManager"]
 layout_mode = 3

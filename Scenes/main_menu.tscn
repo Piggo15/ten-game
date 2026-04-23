@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://drph8xnn8u4fk"]
+[gd_scene load_steps=12 format=3 uid="uid://drph8xnn8u4fk"]
 
 [ext_resource type="Script" uid="uid://ch1w7kgs2c1ma" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_48xlc"]
+[ext_resource type="PackedScene" uid="uid://da54wx5na2xn" path="res://Mesh/Robot.fbx" id="3_1ehe0"]
+[ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="4_ce3w2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_28flt"]
 
@@ -10,6 +13,20 @@ sky_material = SubResource("ProceduralSkyMaterial_28flt")
 [sub_resource type="Environment" id="Environment_48xlc"]
 background_mode = 2
 sky = SubResource("Sky_8ffim")
+
+[sub_resource type="SphereMesh" id="SphereMesh_1ehe0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce3w2"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.8784314, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ce3w2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n45e2"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.18993285, 0.6827714, 0, 1)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_28flt")
@@ -23,26 +40,46 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 4.0
-offset_right = 461.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.5
+offset_right = 228.5
 offset_bottom = 88.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "Bullet X-Treme"
 
 [node name="StartButton" type="Button" parent="Control"]
-layout_mode = 0
-offset_top = 97.0
-offset_right = 158.0
-offset_bottom = 193.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -48.0
+offset_right = 79.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Start"
 
 [node name="CreditsButton" type="Button" parent="Control"]
-layout_mode = 0
-offset_top = 194.0
-offset_right = 227.0
-offset_bottom = 290.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.5
+offset_top = 49.0
+offset_right = 113.5
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Credits"
 
@@ -50,12 +87,35 @@ text = "Credits"
 environment = SubResource("Environment_48xlc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.97945225, 0.20167628, 0, -0.20167628, 0.97945225, 0, 1.2234485, 2.2772088)
+transform = Transform3D(0.73016226, -0.3478146, 0.58812255, -1.896576e-08, 0.86074215, 0.5090414, -0.68327385, -0.37168282, 0.62848145, 14.975146, 7.9558887, 5.3067017)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8931988, 0.3365272, -0.29823712, 0, 0.6632473, 0.74840033, 0.449662, -0.66847026, 0.5924117, 0, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Boxes" parent="." instance=ExtResource("2_48xlc")]
+
+[node name="Robot" parent="." instance=ExtResource("3_1ehe0")]
+transform = Transform3D(-0.13697961, -0.008392351, -0.4807975, 0, 0.4999239, -0.008726204, 0.48087066, -0.002390624, -0.13695876, -3, 4.5, 0)
+script = ExtResource("4_ce3w2")
+
+[node name="Robot2" parent="." instance=ExtResource("3_1ehe0")]
+transform = Transform3D(-0.49178573, 0.018766033, 0.08828724, 0, 0.4890738, -0.10395585, -0.09025963, -0.102248006, -0.48103905, 15, 5, 0)
+script = ExtResource("4_ce3w2")
+
+[node name="BulletMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 10.5, 7, 3.5)
+mesh = SubResource("SphereMesh_1ehe0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ce3w2")
+
+[node name="BulletMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 14.5, 7, 3)
+mesh = SubResource("SphereMesh_1ehe0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ce3w2")
+
+[node name="BulletMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 13.5, 7, 3.5)
+mesh = SubResource("SphereMesh_ce3w2")
+surface_material_override/0 = SubResource("StandardMaterial3D_n45e2")
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/CreditsButton" to="." method="_on_credits_button_pressed"]

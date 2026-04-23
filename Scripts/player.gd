@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var walk_speed = 5.0
 @export var sprint_speed = 7.5
-@export var jump_velocity = 4.
+@export var jump_velocity = 4.5
 @export var start_y_rotation = 0
 @export var sensitivity = 0.005
 @export var rest_fov = 75.0
