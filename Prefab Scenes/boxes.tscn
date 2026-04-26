@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://barr5lka2oxr6"]
+[gd_scene load_steps=4 format=3 uid="uid://barr5lka2oxr6"]
 
 [ext_resource type="Material" uid="uid://b84bvq65i0ac0" path="res://Materials/wall_2_material.tres" id="1_1c410"]
 [ext_resource type="Material" uid="uid://5rp6foie0ec5" path="res://Materials/wall_material.tres" id="1_3vdqk"]
+[ext_resource type="PackedScene" uid="uid://dla6n233oyutc" path="res://Prefab Scenes/lighting.tscn" id="3_mahh6"]
 
 [node name="Boxes" type="Node3D"]
 
@@ -594,3 +595,6 @@ material_override = ExtResource("1_3vdqk")
 use_collision = true
 collision_layer = 8
 collision_mask = 7
+
+[node name="Lighting" parent="." instance=ExtResource("3_mahh6")]
+light_color = Color(1, 1, 1, 1)

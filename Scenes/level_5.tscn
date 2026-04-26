@@ -22,9 +22,6 @@ script = ExtResource("1_26dk1")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xfk5q")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.71721476, 0.47654918, -0.50843275, 0, 0.7296135, 0.68385977, 0.6968522, -0.4904743, 0.52328956, 0, 0, 0)
-
 [node name="Boxes" parent="." instance=ExtResource("2_mb3x2")]
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("3_02esc")]

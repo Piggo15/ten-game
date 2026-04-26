@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1ddqmf33pc36"]
 
 [sub_resource type="Curve" id="Curve_1brsh"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.72727275, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.47727275, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_xbg1e"]
@@ -16,12 +16,15 @@ curve = SubResource("Curve_v84pu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xbg1e"]
 scale_curve = SubResource("CurveTexture_1brsh")
-color = Color(1, 0, 0, 1)
+color = Color(0.80784315, 0.12156863, 0.14901961, 1)
 alpha_curve = SubResource("CurveTexture_xbg1e")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v84pu"]
 transparency = 1
 vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.99999994, 0.174173, 0.12721539, 1)
+emission_energy_multiplier = 3.85
 
 [sub_resource type="TorusMesh" id="TorusMesh_0f4ri"]
 material = SubResource("StandardMaterial3D_v84pu")
@@ -31,6 +34,7 @@ material = SubResource("StandardMaterial3D_v84pu")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 3
 lifetime = 0.25
+preprocess = 2.0
 speed_scale = 0.25
 fixed_fps = 240
 process_material = SubResource("ParticleProcessMaterial_xbg1e")
