@@ -10,6 +10,8 @@
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_color = Color(0.18993285, 0.6827714, 0, 1)
+emission_enabled = true
+emission = Color(0.1882353, 0.68235296, 0, 1)
 
 [node name="Bulllet" type="Node3D"]
 script = ExtResource("1_k1jty")

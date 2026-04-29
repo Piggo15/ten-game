@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dan7v5msi4bkn"]
+
+[ext_resource type="Script" uid="uid://dujojpk6krm1q" path="res://Scripts/level.gd" id="1_b3sq5"]
+[ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_aq6fk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk57k"]
+
+[sub_resource type="Sky" id="Sky_8ffim"]
+sky_material = SubResource("ProceduralSkyMaterial_vk57k")
+
+[sub_resource type="Environment" id="Environment_xfk5q"]
+background_mode = 2
+sky = SubResource("Sky_8ffim")
+
+[node name="BossBattle" type="Node3D"]
+script = ExtResource("1_b3sq5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xfk5q")
+
+[node name="Boxes" parent="." instance=ExtResource("2_aq6fk")]

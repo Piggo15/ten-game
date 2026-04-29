@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bxunj17lf68cb"]
+[gd_scene load_steps=2 format=3 uid="uid://bxunj17lf68cb"]
+
+[ext_resource type="Script" uid="uid://dl76h4ntvjvlq" path="res://Scripts/final_win_screen.gd" id="1_uxeg4"]
 
 [node name="FinalWinScreen" type="Node3D"]
+script = ExtResource("1_uxeg4")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -30,3 +33,21 @@ offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "FINAL LEVEL WIN"
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "To Title Screen"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
