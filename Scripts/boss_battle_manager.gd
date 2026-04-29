@@ -10,11 +10,24 @@ const BOSS_BATTLE_PHASE_2_LOOP = preload("uid://b1cct1ik6id6m")
 
 @onready var level_manager = get_tree().current_scene
 @onready var main_music_player : AudioStreamPlayer3D = level_manager.get_child(0)
+@onready var boss_body : StaticBody3D = $Boss/StaticBody3D
+@onready var player = %CharacterBody3D
+@onready var boss: Node3D = $Boss
 
 @onready var current_stage = 1
 @onready var current_audio_state = 0
 
+@onready var pos_0: Node3D = $Pos0
+@onready var pos_1: Node3D = $Pos1
+@onready var pos_2: Node3D = $Pos2
+@onready var pos_3: Node3D = $Pos3
+@onready var pos_4: Node3D = $Pos4
+
 var loop_1_played_times = 0
+
+var health = 10
+
+@onready var flash_ps: GPUParticles3D = $Boss/Flash_PS
 
 func _ready() -> void:
 	main_music_player.stop()
@@ -34,11 +47,10 @@ func music_switcher():
 		
 		1:
 			if !music_player.playing:
-				var random = randi_range(0, 3) # 25% chance to play other clip
-				if random == 0 and loop_1_played_times > 3:
+				if loop_1_played_times > 2:
 					music_player.stream = BOSS_BATTLE_PHASE_1_NO_DRUM_VARIANT
 					music_player.play()
-					loop_1_played_times = 1
+					loop_1_played_times = 0
 				else:
 					music_player.stream = BOSS_BATTLE_PHASE_1_LOOP
 					music_player.play()
@@ -46,3 +58,10 @@ func music_switcher():
 
 func _on_music_finished():
 	music_switcher()
+
+func _process(delta: float) -> void:
+	boss_body.look_at (player.global_position, Vector3.UP)
+
+
+func _on_start_timer_timeout() -> void:
+	boss.position = pos_1.global_position

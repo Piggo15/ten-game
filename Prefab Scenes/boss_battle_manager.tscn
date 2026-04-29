@@ -1,8 +1,79 @@
-[gd_scene load_steps=2 format=3 uid="uid://dae2f2kvwkw7m"]
+[gd_scene load_steps=11 format=3 uid="uid://dae2f2kvwkw7m"]
 
 [ext_resource type="Script" uid="uid://c58yfkcuwu8d5" path="res://Scripts/boss_battle_manager.gd" id="1_iy5tq"]
+[ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="2_cucxh"]
+[ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="2_puv5x"]
+[ext_resource type="PackedScene" uid="uid://brsdm88arepbq" path="res://Prefab Scenes/robot_hover_ps_boss.tscn" id="4_puv5x"]
+[ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="5_puv5x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ajqb"]
+radius = 2.5
+height = 7.37426
+
+[sub_resource type="Curve" id="Curve_7yfbf"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.98484844, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_puv5x"]
+curve = SubResource("Curve_7yfbf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jo66g"]
+scale_curve = SubResource("CurveTexture_puv5x")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7v3wd"]
 
 [node name="BossBattleManager" type="Node3D"]
 script = ExtResource("1_iy5tq")
 
 [node name="Music_Player" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 3
+bus = &"Music"
+
+[node name="Pos0" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+
+[node name="Pos1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.393797, 0)
+
+[node name="Pos2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+
+[node name="Pos3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+
+[node name="Pos4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+
+[node name="Boss" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boss"]
+script = ExtResource("2_puv5x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7101402, 0)
+shape = SubResource("CapsuleShape3D_5ajqb")
+
+[node name="Robot" parent="Boss/StaticBody3D" instance=ExtResource("2_cucxh")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="Robot_Hover_PS" parent="Boss" instance=ExtResource("4_puv5x")]
+
+[node name="Flash_PS" type="GPUParticles3D" parent="Boss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.266268, 0)
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jo66g")
+draw_pass_1 = SubResource("SphereMesh_7v3wd")
+
+[node name="Start_Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="Boxes" parent="." instance=ExtResource("5_puv5x")]
+
+[connection signal="timeout" from="Start_Timer" to="." method="_on_start_timer_timeout"]
