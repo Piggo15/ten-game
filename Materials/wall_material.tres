@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://btrdy74r5cri7" path="res://Textures/Wall_Bump.png" id="3_pkaka"]
 
 [resource]
+albedo_color = Color(1, 1, 1, 0.4392157)
 albedo_texture = ExtResource("1_o1ue0")
 metallic = 0.75
 roughness_texture = ExtResource("3_pkaka")

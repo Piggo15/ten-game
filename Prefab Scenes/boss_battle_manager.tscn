@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dae2f2kvwkw7m"]
+[gd_scene load_steps=14 format=3 uid="uid://dae2f2kvwkw7m"]
 
 [ext_resource type="Script" uid="uid://c58yfkcuwu8d5" path="res://Scripts/boss_battle_manager.gd" id="1_iy5tq"]
 [ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="2_cucxh"]
@@ -10,9 +10,16 @@
 radius = 2.5
 height = 7.37426
 
+[sub_resource type="Curve" id="Curve_puv5x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4166767, 1), 0.0, 0.0, 0, 0, Vector2(0.67424244, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jo66g"]
+curve = SubResource("Curve_puv5x")
+
 [sub_resource type="Curve" id="Curve_7yfbf"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.98484844, 10), 0.0, 0.0, 0, 0]
+_limits = [9.99, 15.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_puv5x"]
@@ -20,8 +27,18 @@ curve = SubResource("Curve_7yfbf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jo66g"]
 scale_curve = SubResource("CurveTexture_puv5x")
+color = Color(1, 0.4392157, 0.4392157, 1)
+alpha_curve = SubResource("CurveTexture_jo66g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_puv5x"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.4392157, 0.4392157, 1)
+emission_enabled = true
+emission = Color(1, 0.4392157, 0.4392157, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7v3wd"]
+material = SubResource("StandardMaterial3D_puv5x")
 
 [node name="BossBattleManager" type="Node3D"]
 script = ExtResource("1_iy5tq")
@@ -34,16 +51,16 @@ bus = &"Music"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
 
 [node name="Pos1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.393797, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 13.393797, -8)
 
 [node name="Pos2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.3937969, -8)
 
 [node name="Pos3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 8.893797, 8)
 
 [node name="Pos4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 8.393797, 7.5)
 
 [node name="Boss" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
@@ -61,11 +78,13 @@ transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 [node name="Robot_Hover_PS" parent="Boss" instance=ExtResource("4_puv5x")]
 
 [node name="Flash_PS" type="GPUParticles3D" parent="Boss"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.266268, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4582787, 0)
 emitting = false
 amount = 1
-lifetime = 0.5
+lifetime = 0.25
 one_shot = true
+fixed_fps = 120
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_jo66g")
 draw_pass_1 = SubResource("SphereMesh_7v3wd")
 
@@ -76,4 +95,21 @@ autostart = true
 
 [node name="Boxes" parent="." instance=ExtResource("5_puv5x")]
 
+[node name="TeleportTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="TeleportTimer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="PreFlashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PreFlashTimer2" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Start_Timer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
+[connection signal="timeout" from="TeleportTimer2" to="." method="_on_teleport_timer_2_timeout"]
+[connection signal="timeout" from="PreFlashTimer" to="." method="_on_pre_flash_timer_timeout"]
+[connection signal="timeout" from="PreFlashTimer2" to="." method="_on_pre_flash_timer_2_timeout"]

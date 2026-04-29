@@ -13,9 +13,13 @@ const BOSS_BATTLE_PHASE_2_LOOP = preload("uid://b1cct1ik6id6m")
 @onready var boss_body : StaticBody3D = $Boss/StaticBody3D
 @onready var player = %CharacterBody3D
 @onready var boss: Node3D = $Boss
+@onready var teleport_timer: Timer = $TeleportTimer
+@onready var pre_flash_timer: Timer = $PreFlashTimer
+@onready var teleport_timer_2: Timer = $TeleportTimer2
+@onready var pre_flash_timer_2: Timer = $PreFlashTimer2
 
-@onready var current_stage = 1
-@onready var current_audio_state = 0
+var current_stage = 1
+var current_audio_state = 0
 
 @onready var pos_0: Node3D = $Pos0
 @onready var pos_1: Node3D = $Pos1
@@ -23,9 +27,15 @@ const BOSS_BATTLE_PHASE_2_LOOP = preload("uid://b1cct1ik6id6m")
 @onready var pos_3: Node3D = $Pos3
 @onready var pos_4: Node3D = $Pos4
 
+@onready var positions_to_teleport_to = [pos_1, pos_2, pos_3, pos_4]
+var current_pos = pos_0
+
 var loop_1_played_times = 0
 
 var health = 10
+
+var teleport_cooldown = 3
+var pre_teleport_time = 1
 
 @onready var flash_ps: GPUParticles3D = $Boss/Flash_PS
 
@@ -65,3 +75,27 @@ func _process(delta: float) -> void:
 
 func _on_start_timer_timeout() -> void:
 	boss.position = pos_1.global_position
+	current_pos = pos_1
+	flash_ps.emitting = true
+	teleport_timer.start(teleport_cooldown)
+
+func _on_teleport_timer_timeout() -> void:
+	flash_ps.emitting = true
+	pre_flash_timer.start(0.1)
+	
+
+func _on_pre_flash_timer_timeout() -> void:
+	boss.position = pos_0.global_position
+	teleport_timer_2.start(pre_teleport_time)
+
+func _on_teleport_timer_2_timeout() -> void:
+	var pos = positions_to_teleport_to[randi_range(0, positions_to_teleport_to.size() - 1)]
+	while pos == current_pos:
+		pos = positions_to_teleport_to[randi_range(0, positions_to_teleport_to.size() - 1)]
+	boss.position = pos.global_position
+	current_pos = pos
+	pre_flash_timer_2.start(0.1)
+
+func _on_pre_flash_timer_2_timeout() -> void:
+	flash_ps.emitting = true
+	teleport_timer.start(teleport_cooldown)
