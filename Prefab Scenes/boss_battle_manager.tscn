@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dae2f2kvwkw7m"]
+[gd_scene load_steps=16 format=3 uid="uid://dae2f2kvwkw7m"]
 
 [ext_resource type="Script" uid="uid://c58yfkcuwu8d5" path="res://Scripts/boss_battle_manager.gd" id="1_iy5tq"]
 [ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="2_cucxh"]
 [ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="2_puv5x"]
 [ext_resource type="PackedScene" uid="uid://brsdm88arepbq" path="res://Prefab Scenes/robot_hover_ps_boss.tscn" id="4_puv5x"]
+[ext_resource type="AudioStream" uid="uid://bw5ev6h87xcqm" path="res://Audio/Sfx/Boss_TP_Sfx.wav" id="5_jo66g"]
 [ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="5_puv5x"]
+[ext_resource type="AudioStream" uid="uid://bhd31jntx8d2p" path="res://Audio/Sfx/Shoot_V2_Sfx.wav" id="6_7v3wd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ajqb"]
 radius = 2.5
@@ -72,6 +74,9 @@ script = ExtResource("2_puv5x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7101402, 0)
 shape = SubResource("CapsuleShape3D_5ajqb")
 
+[node name="Shoot_Point" type="Node3D" parent="Boss/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -4)
+
 [node name="Robot" parent="Boss/StaticBody3D" instance=ExtResource("2_cucxh")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 
@@ -87,6 +92,13 @@ fixed_fps = 120
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_jo66g")
 draw_pass_1 = SubResource("SphereMesh_7v3wd")
+
+[node name="TP_Sound" type="AudioStreamPlayer3D" parent="Boss"]
+stream = ExtResource("5_jo66g")
+bus = &"SFX"
+
+[node name="Shoot_Sound" type="AudioStreamPlayer3D" parent="Boss"]
+stream = ExtResource("6_7v3wd")
 
 [node name="Start_Timer" type="Timer" parent="."]
 wait_time = 8.0
@@ -108,8 +120,12 @@ one_shot = true
 [node name="PreFlashTimer2" type="Timer" parent="."]
 one_shot = true
 
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Start_Timer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer2" to="." method="_on_teleport_timer_2_timeout"]
 [connection signal="timeout" from="PreFlashTimer" to="." method="_on_pre_flash_timer_timeout"]
 [connection signal="timeout" from="PreFlashTimer2" to="." method="_on_pre_flash_timer_2_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
