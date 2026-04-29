@@ -14,6 +14,7 @@ func _ready() -> void:
 	scene_list.append(preload("res://Scenes/level_3.tscn"))
 	scene_list.append(preload("res://Scenes/level_4.tscn"))
 	scene_list.append(preload("res://Scenes/level_5.tscn"))
+	scene_list.append(preload("res://Scenes/boss_fight.tscn"))
 	#scene_list.append(preload("res://Scenes/level_6.tscn"))
 	#scene_list.append(preload("res://Scenes/level_7.tscn"))
 	#scene_list.append(preload("res://Scenes/level_8.tscn"))

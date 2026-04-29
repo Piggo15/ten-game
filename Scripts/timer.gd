@@ -2,6 +2,8 @@ extends Node3D
 
 var timer = 10.0
 
+@export var timer_active = true
+
 @onready var display_label = $Control/DisplayLabel
 @onready var level_manager = get_tree().current_scene
 @onready var first_five_sfx = $FirstFivePlayer
@@ -14,7 +16,7 @@ var int_time = int(timer)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if player.died or player.won:
+	if player.died or player.won or !timer_active:
 		return
 	
 	timer -= delta

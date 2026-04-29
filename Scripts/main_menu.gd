@@ -1,14 +1,16 @@
 extends Node3D
 
 @onready var level_manager = get_tree().current_scene
+@onready var  music_player : AudioStreamPlayer3D = level_manager.get_child(0)
 
 @export var credits_scene_id = 1
 @export var settings_scene_id = 2
-@export var level_1_scene_id = 3
+@export var level_1_scene_id = 8#3 # NEED TO SWITCH BACK, FOR BOSS TESTING
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if !music_player.playing:
+		music_player.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

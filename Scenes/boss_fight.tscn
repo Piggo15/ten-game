@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dan7v5msi4bkn"]
+[gd_scene load_steps=10 format=3 uid="uid://dan7v5msi4bkn"]
 
-[ext_resource type="Script" uid="uid://dujojpk6krm1q" path="res://Scripts/level.gd" id="1_b3sq5"]
 [ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_aq6fk"]
+[ext_resource type="PackedScene" uid="uid://dlg6seov50do7" path="res://Prefab Scenes/player.tscn" id="3_b3sq5"]
+[ext_resource type="PackedScene" uid="uid://if0b35trtwoh" path="res://Prefab Scenes/timer.tscn" id="4_aq6fk"]
+[ext_resource type="Script" uid="uid://dg74j230loa6g" path="res://Scripts/enemy_manager.gd" id="5_qwimq"]
+[ext_resource type="PackedScene" uid="uid://dsu8u5prumqk2" path="res://Prefab Scenes/enemy.tscn" id="6_0qq8k"]
+[ext_resource type="PackedScene" uid="uid://dae2f2kvwkw7m" path="res://Prefab Scenes/boss_battle_manager.tscn" id="6_b3sq5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk57k"]
 
@@ -12,10 +16,47 @@ sky_material = SubResource("ProceduralSkyMaterial_vk57k")
 background_mode = 2
 sky = SubResource("Sky_8ffim")
 
-[node name="BossBattle" type="Node3D"]
-script = ExtResource("1_b3sq5")
+[node name="Boss_Fight" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xfk5q")
 
 [node name="Boxes" parent="." instance=ExtResource("2_aq6fk")]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_b3sq5")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+start_y_rotation = -90
+in_final_level = true
+
+[node name="Timer" parent="." instance=ExtResource("4_aq6fk")]
+unique_name_in_owner = true
+timer_active = false
+
+[node name="EnemyManager" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_qwimq")
+
+[node name="Enemy" parent="EnemyManager" instance=ExtResource("6_0qq8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6.9752, 5.015002)
+
+[node name="Control" type="Control" parent="EnemyManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EnemyCountLabel" type="Label" parent="EnemyManager/Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 179.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 32
+text = "Enemies: "
+metadata/_edit_use_anchors_ = true
+
+[node name="BossBattleManager" parent="." instance=ExtResource("6_b3sq5")]

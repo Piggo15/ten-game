@@ -28,7 +28,6 @@ environment = SubResource("Environment_xfk5q")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 level = 5
-in_final_level = true
 
 [node name="Timer" parent="." instance=ExtResource("4_gfyxx")]
 unique_name_in_owner = true

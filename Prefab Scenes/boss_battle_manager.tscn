@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dae2f2kvwkw7m"]
+
+[ext_resource type="Script" uid="uid://c58yfkcuwu8d5" path="res://Scripts/boss_battle_manager.gd" id="1_iy5tq"]
+
+[node name="BossBattleManager" type="Node3D"]
+script = ExtResource("1_iy5tq")
+
+[node name="Music_Player" type="AudioStreamPlayer3D" parent="."]
