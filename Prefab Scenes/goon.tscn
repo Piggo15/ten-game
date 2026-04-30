@@ -1,0 +1,101 @@
+[gd_scene load_steps=18 format=3 uid="uid://6f6gqhuxf2it"]
+
+[ext_resource type="Script" uid="uid://dakd2ieq0cvsm" path="res://Scripts/goon.gd" id="1_l3eax"]
+[ext_resource type="AudioStream" uid="uid://bw5ev6h87xcqm" path="res://Audio/Sfx/Boss_TP_Sfx.wav" id="3_70po5"]
+[ext_resource type="PackedScene" uid="uid://b1ddqmf33pc36" path="res://Prefab Scenes/robot_hover_ps.tscn" id="3_gbjqo"]
+[ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="4_dv4lp"]
+[ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="5_g3s6s"]
+[ext_resource type="AudioStream" uid="uid://bl3hua8sa1wgb" path="res://Audio/Sfx/Enemy_Death_Sfx.wav" id="6_8n26u"]
+[ext_resource type="AudioStream" uid="uid://bhd31jntx8d2p" path="res://Audio/Sfx/Shoot_V2_Sfx.wav" id="7_gld36"]
+
+[sub_resource type="Curve" id="Curve_jeebo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4166767, 1), 0.0, 0.0, 0, 0, Vector2(0.67424244, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jo66g"]
+curve = SubResource("Curve_jeebo")
+
+[sub_resource type="Curve" id="Curve_5mftd"]
+_limits = [9.99, 15.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_puv5x"]
+curve = SubResource("Curve_5mftd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gbjqo"]
+scale_curve = SubResource("CurveTexture_puv5x")
+color = Color(1, 0.4392157, 0.4392157, 1)
+alpha_curve = SubResource("CurveTexture_jo66g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_puv5x"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.4392157, 0.4392157, 1)
+emission_enabled = true
+emission = Color(1, 0.4392157, 0.4392157, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dv4lp"]
+material = SubResource("StandardMaterial3D_puv5x")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gbjqo"]
+height = 1.8751526
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dv4lp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g3s6s"]
+
+[node name="Goon" type="Node3D"]
+script = ExtResource("1_l3eax")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_70po5")
+autoplay = true
+
+[node name="Flash_PS" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5417213, 0)
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+fixed_fps = 120
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gbjqo")
+draw_pass_1 = SubResource("SphereMesh_dv4lp")
+
+[node name="Robot_Hover_PS" parent="." instance=ExtResource("3_gbjqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4064126, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("4_dv4lp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29807183, 0)
+shape = SubResource("CapsuleShape3D_gbjqo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+visible = false
+mesh = SubResource("CapsuleMesh_dv4lp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(0.5489946, 0, 0, 0, 0.35407054, 0, 0, 0, 0.36787164, 0, 0.57216215, -0.3226524)
+visible = false
+mesh = SubResource("BoxMesh_g3s6s")
+
+[node name="ShootPoint" type="Node3D" parent="Area3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, -0.8)
+
+[node name="Robot" parent="Area3D" instance=ExtResource("5_g3s6s")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.2, 0)
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_8n26u")
+attenuation_model = 3
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_gld36")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

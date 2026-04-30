@@ -26,6 +26,7 @@ var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 @onready var health_bar: ColorRect = $Control/Health_Bar
 @onready var start_timer: Timer = $Start_Timer
 @onready var flash_before_phase_2_timer: Timer = $FlashBeforePhase2Timer
+@onready var goon_spawn_timer: Timer = $GoonSpawnTimer
 
 var current_stage = 1
 var current_audio_state = 0
@@ -46,6 +47,9 @@ var current_audio_state = 0
 @onready var goon_pos_6: Node3D = $GoonPos6
 
 @onready var goon_positions = [goon_pos_1, goon_pos_2, goon_pos_3, goon_pos_4, goon_pos_5, goon_pos_6]
+const GOON = preload("uid://6f6gqhuxf2it")
+
+var current_spawned_goon = 0
 
 var current_pos = pos_0
 
@@ -179,6 +183,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	body.queue_free()
 	health -= 1
 	update_health_bar()
+	if health <= 0:
+		player.win()
 	if (float(health) / float(max_health)) <= 0.5 and current_stage == 1:
 		current_stage = 2
 		current_audio_state = 2
@@ -192,7 +198,16 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		pre_teleport_time = pre_teleport_time_phase_2
 		shots_fired = shots_per_teleport
 		flash_before_phase_2_timer.start(0.1)
+		goon_spawn_timer.start(music_player.stream.get_length() - music_player.get_playback_position())
 
 
 func _on_flash_before_phase_2_timer_timeout() -> void:
 	boss.position = pos_0.global_position
+
+
+func _on_goon_spawn_timer_timeout() -> void:
+	var goon = GOON.instantiate()
+	goon_positions[current_spawned_goon].add_child(goon)
+	current_spawned_goon += 1
+	if current_spawned_goon < 6:
+		goon_spawn_timer.start(0.25)

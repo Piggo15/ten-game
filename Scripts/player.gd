@@ -132,6 +132,8 @@ func _on_hurtbox_body_entered(_body: Node3D) -> void:
 		die("Died to Bullet!")
 
 func die(message):
+	if won:
+		return
 	died = true
 	clear_game()
 	var death_screen = death_screen_scene.instantiate()
@@ -140,6 +142,9 @@ func die(message):
 	death_screen.update_death_message(message)
 
 func win():
+	if died:
+		return
+	
 	won = true
 	clear_game()
 	
@@ -155,7 +160,10 @@ func win():
 
 func clear_game():
 	enemy_manager.clear_enemies()
-	enemy_manager.enemy_count_label.queue_free()
-	timer.display_label.queue_free()
-	ui.queue_free()
+	if enemy_manager.enemy_count_label != null:
+		enemy_manager.enemy_count_label.queue_free()
+	if timer.display_label != null:
+		timer.display_label.queue_free()
+	if ui != null:
+		ui.queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
