@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 start_y_rotation = -90
 level = "BOSS BATTLE"
 in_final_level = true
-ammo = 50
+ammo = 75
 
 [node name="Timer" parent="." instance=ExtResource("4_aq6fk")]
 unique_name_in_owner = true
