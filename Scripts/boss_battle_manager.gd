@@ -29,6 +29,9 @@ var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 @onready var goon_spawn_timer: Timer = $GoonSpawnTimer
 @onready var phase_2_start_sfx: AudioStreamPlayer3D = $Phase2StartSfx
 @onready var death_animation_timer: Timer = $DeathAnimationTimer
+@onready var robot_hover_ps: Node3D = $Boss/Robot_Hover_PS
+@onready var area_3d: Area3D = $Boss/Area3D
+@onready var control: Control = $Control
 
 var current_stage = 1
 var current_audio_state = 0
@@ -80,7 +83,8 @@ func _ready() -> void:
 	music_player.finished.connect(_on_music_finished)
 
 func _physics_process(_delta: float) -> void:
-	health_bar.scale.x = lerp(health_bar.scale.x, float(clamp(float(health) / float(max_health), 0, 1)), 0.25)
+	if health_bar != null:
+		health_bar.scale.x = lerp(health_bar.scale.x, float(clamp(float(health) / float(max_health), 0, 1)), 0.25)
 
 func music_switcher():
 	match current_audio_state:
@@ -124,11 +128,14 @@ func _on_music_finished():
 	music_switcher()
 
 func _process(_delta: float) -> void:
-	boss_body.look_at (player.global_position, Vector3.UP)
+	if boss_body != null:
+		boss_body.look_at (player.global_position, Vector3.UP)
 	if player.died == true:
 		music_player.stop()
 
 func _on_start_timer_timeout() -> void:
+	if player.won or player.died:
+		return
 	boss.position = pos_1.global_position
 	current_pos = pos_1
 	flash_ps.emitting = true
@@ -203,7 +210,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		pre_teleport_time = pre_teleport_time_phase_2
 		shots_fired = shots_per_teleport
 		flash_before_phase_2_timer.start(0.1)
-		#goon_spawn_timer.start(music_player.stream.get_length() - music_player.get_playback_position())
+		goon_spawn_timer.start(music_player.stream.get_length() - music_player.get_playback_position())
 
 
 func _on_flash_before_phase_2_timer_timeout() -> void:
@@ -221,8 +228,14 @@ var explosions = 0
 var death_explosion_count = 5
 
 func _on_death_animation_timer_timeout() -> void:
+	if explosions < death_explosion_count:
+		death_animation_timer.start(0.75)
+	else:
+		player.win()
+		robot_hover_ps.queue_free()
+		area_3d.queue_free()
+		control.queue_free()
+		return
 	explosions += 1
 	flash_ps.emitting = true
 	phase_2_start_sfx.play()
-	if explosions < death_explosion_count:
-		death_animation_timer.start(0.75)
