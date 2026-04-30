@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dae2f2kvwkw7m"]
+[gd_scene load_steps=16 format=3 uid="uid://dae2f2kvwkw7m"]
 
 [ext_resource type="Script" uid="uid://c58yfkcuwu8d5" path="res://Scripts/boss_battle_manager.gd" id="1_iy5tq"]
 [ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="2_cucxh"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bw5ev6h87xcqm" path="res://Audio/Sfx/Boss_TP_Sfx.wav" id="5_jo66g"]
 [ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="5_puv5x"]
 [ext_resource type="AudioStream" uid="uid://bhd31jntx8d2p" path="res://Audio/Sfx/Shoot_V2_Sfx.wav" id="6_7v3wd"]
+[ext_resource type="AudioStream" uid="uid://brh7areqst5d4" path="res://Audio/Sfx/Boss_Phase_2_Start_Sfx.wav" id="7_7v3wd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ajqb"]
 radius = 2.5
@@ -181,6 +182,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 12)
 [node name="GoonSpawnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Phase2StartSfx" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_7v3wd")
+attenuation_model = 3
+bus = &"SFX"
+
+[node name="DeathAnimationTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Boss/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Start_Timer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
@@ -190,3 +199,4 @@ one_shot = true
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="FlashBeforePhase2Timer" to="." method="_on_flash_before_phase_2_timer_timeout"]
 [connection signal="timeout" from="GoonSpawnTimer" to="." method="_on_goon_spawn_timer_timeout"]
+[connection signal="timeout" from="DeathAnimationTimer" to="." method="_on_death_animation_timer_timeout"]

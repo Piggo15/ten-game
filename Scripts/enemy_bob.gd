@@ -1,7 +1,7 @@
 extends Node3D
 
 var bob_frequency = 1
-var bob_amplitude = 0.002
+var bob_amplitude = 0.0002
 var t = 0
 
 func _ready() -> void:
