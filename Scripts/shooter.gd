@@ -4,6 +4,7 @@ var bullet_scene = preload("res://Prefab Scenes/bulllet.tscn")
 
 @export var shooter_force = 60
 @export var ammo_amount = 10
+var max_ammo
 
 @onready var bullet_spawn_position = $"../CameraPosition/Camera3D/BulletSpawnPosition"
 @onready var sfx_player = $ShootSound
@@ -12,7 +13,9 @@ var bullet_scene = preload("res://Prefab Scenes/bulllet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	ammo_amount = get_parent().ammo
+	max_ammo = ammo_amount
+	ammo_label.text = "Ammo: " + str(ammo_amount) + "/" + str(max_ammo)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,4 +29,4 @@ func _process(_delta: float) -> void:
 		sfx_player.pitch_scale = randf_range(0.9, 1.2)
 		sfx_player.play()
 		ammo_amount -= 1
-		ammo_label.text = "Ammo: " + str(ammo_amount) + "/10"
+		ammo_label.text = "Ammo: " + str(ammo_amount) + "/" + str(max_ammo)

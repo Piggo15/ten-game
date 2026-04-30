@@ -53,16 +53,16 @@ bus = &"Music"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
 
 [node name="Pos1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 13.393797, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 11.393797, -8)
 
 [node name="Pos2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.3937969, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 10.893797, -8)
 
 [node name="Pos3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 8.893797, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 9.893797, 8)
 
 [node name="Pos4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 8.393797, 7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 13.893797, 7.5)
 
 [node name="Boss" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
@@ -71,19 +71,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
 script = ExtResource("2_puv5x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boss/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7101402, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2898598, 0)
 shape = SubResource("CapsuleShape3D_5ajqb")
 
 [node name="Shoot_Point" type="Node3D" parent="Boss/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
 [node name="Robot" parent="Boss/StaticBody3D" instance=ExtResource("2_cucxh")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -5, 0)
 
 [node name="Robot_Hover_PS" parent="Boss" instance=ExtResource("4_puv5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 
 [node name="Flash_PS" type="GPUParticles3D" parent="Boss"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4582787, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5417213, 0)
 emitting = false
 amount = 1
 lifetime = 0.25

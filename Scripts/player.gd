@@ -12,6 +12,7 @@ extends CharacterBody3D
 @export var bob_amplitude = 0.08
 @export var level = 1
 @export var in_final_level = false
+@export var ammo = 10
 
 var speed = walk_speed
 var bob_t = 0.0
@@ -35,12 +36,12 @@ var won = false
 @onready var final_win_screen_scene = preload("res://Prefab Scenes/final_win_screen.tscn")
 @onready var death_screen_scene = preload("res://Prefab Scenes/death_screen.tscn")
 @onready var level_label: Label = $Control/LevelLabel
+@onready var shooter: Node3D = $Shooter
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	level_label.text = "Level " + str(level)
 	camera_position.rotation.y = start_y_rotation
-	
 	sensitivity = settings_manager.sensitivity
 
 func _unhandled_input(event: InputEvent) -> void:
