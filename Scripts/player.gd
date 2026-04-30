@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var view_bob = true
 @export var bob_frequency = 2.0
 @export var bob_amplitude = 0.08
-@export var level = 1
+@export var level = "Level 1"
 @export var in_final_level = false
 @export var ammo = 10
 
@@ -40,7 +40,7 @@ var won = false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	level_label.text = "Level " + str(level)
+	level_label.text = level
 	camera_position.rotation.y = start_y_rotation
 	sensitivity = settings_manager.sensitivity
 

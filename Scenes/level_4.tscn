@@ -27,7 +27,7 @@ environment = SubResource("Environment_xfk5q")
 [node name="CharacterBody3D" parent="." instance=ExtResource("3_5a8oa")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-level = 4
+level = "Level 4"
 
 [node name="Timer" parent="." instance=ExtResource("4_3ntyy")]
 unique_name_in_owner = true

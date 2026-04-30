@@ -5,9 +5,13 @@ var enemy_count
 
 @onready var enemy_count_label = $Control/EnemyCountLabel
 @onready var player = %CharacterBody3D
+@export var active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if !active:
+		return
+	
 	for child in get_children():
 		if child is Node3D:
 			enemy_node_array.append(child)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dae2f2kvwkw7m"]
+[gd_scene load_steps=15 format=3 uid="uid://dae2f2kvwkw7m"]
 
 [ext_resource type="Script" uid="uid://c58yfkcuwu8d5" path="res://Scripts/boss_battle_manager.gd" id="1_iy5tq"]
 [ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="2_cucxh"]
-[ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="2_puv5x"]
 [ext_resource type="PackedScene" uid="uid://brsdm88arepbq" path="res://Prefab Scenes/robot_hover_ps_boss.tscn" id="4_puv5x"]
 [ext_resource type="AudioStream" uid="uid://bw5ev6h87xcqm" path="res://Audio/Sfx/Boss_TP_Sfx.wav" id="5_jo66g"]
 [ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="5_puv5x"]
@@ -67,17 +66,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 13.893797, 7.5)
 [node name="Boss" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.106203, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Boss"]
-script = ExtResource("2_puv5x")
+[node name="Area3D" type="Area3D" parent="Boss"]
+collision_layer = 2
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2898598, 0)
 shape = SubResource("CapsuleShape3D_5ajqb")
 
-[node name="Shoot_Point" type="Node3D" parent="Boss/StaticBody3D"]
+[node name="Shoot_Point" type="Node3D" parent="Boss/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
-[node name="Robot" parent="Boss/StaticBody3D" instance=ExtResource("2_cucxh")]
+[node name="Robot" parent="Boss/Area3D" instance=ExtResource("2_cucxh")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -5, 0)
 
 [node name="Robot_Hover_PS" parent="Boss" instance=ExtResource("4_puv5x")]
@@ -124,6 +124,40 @@ one_shot = true
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -422.0
+offset_top = 78.0
+offset_right = 378.0
+offset_bottom = 118.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.47843137)
+
+[node name="Health_Bar" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -422.0
+offset_top = 78.0
+offset_right = 378.0
+offset_bottom = 118.0
+grow_horizontal = 2
+color = Color(1, 0.4392157, 0.4392157, 1)
+
+[connection signal="body_entered" from="Boss/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Start_Timer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]
 [connection signal="timeout" from="TeleportTimer2" to="." method="_on_teleport_timer_2_timeout"]

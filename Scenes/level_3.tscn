@@ -29,7 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005044937, -0.028506279, -
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 start_y_rotation = 180
-level = 3
+level = "Level 3"
 
 [node name="Timer" parent="." instance=ExtResource("4_l4wr6")]
 unique_name_in_owner = true

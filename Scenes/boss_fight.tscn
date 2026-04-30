@@ -23,6 +23,7 @@ environment = SubResource("Environment_xfk5q")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 start_y_rotation = -90
+level = "BOSS BATTLE"
 in_final_level = true
 ammo = 50
 
@@ -33,6 +34,7 @@ timer_active = false
 [node name="EnemyManager" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_qwimq")
+active = false
 
 [node name="Control" type="Control" parent="EnemyManager"]
 layout_mode = 3
@@ -50,7 +52,6 @@ offset_top = 64.0
 offset_right = 179.0
 offset_bottom = 109.0
 theme_override_font_sizes/font_size = 32
-text = "Enemies: "
 metadata/_edit_use_anchors_ = true
 
 [node name="BossBattleManager" parent="." instance=ExtResource("6_b3sq5")]

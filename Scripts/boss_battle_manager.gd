@@ -12,7 +12,7 @@ var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 
 @onready var level_manager = get_tree().current_scene
 @onready var main_music_player : AudioStreamPlayer3D = level_manager.get_child(0)
-@onready var boss_body : StaticBody3D = $Boss/StaticBody3D
+@onready var boss_body : Area3D = $Boss/Area3D
 @onready var player = %CharacterBody3D
 @onready var boss: Node3D = $Boss
 @onready var teleport_timer: Timer = $TeleportTimer
@@ -21,8 +21,9 @@ var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 @onready var pre_flash_timer_2: Timer = $PreFlashTimer2
 @onready var tp_sound: AudioStreamPlayer3D = $Boss/TP_Sound
 @onready var shoot_timer: Timer = $ShootTimer
-@onready var shoot_point: Node3D = $Boss/StaticBody3D/Shoot_Point
+@onready var shoot_point: Node3D = $Boss/Area3D/Shoot_Point
 @onready var shoot_sound: AudioStreamPlayer3D = $Boss/Shoot_Sound
+@onready var health_bar: ColorRect = $Control/Health_Bar
 
 var current_stage = 1
 var current_audio_state = 0
@@ -38,7 +39,8 @@ var current_pos = pos_0
 
 var loop_1_played_times = 0
 
-var health = 10
+var health = 40
+var max_health = 40
 
 var teleport_cooldown = 3
 var pre_teleport_time = 1
@@ -53,6 +55,7 @@ func _ready() -> void:
 	music_player.stream = BOSS_BATTLE_INTRO
 	music_player.play()
 	music_player.finished.connect(_on_music_finished)
+	update_health_bar()
 
 func music_switcher():
 	match current_audio_state:
@@ -76,11 +79,15 @@ func music_switcher():
 					loop_1_played_times += 1
 
 func _on_music_finished():
+	if player.died == true:
+		return
 	music_switcher()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	boss_body.look_at (player.global_position, Vector3.UP)
 
+func update_health_bar():
+	health_bar.scale.x = float(health) / float(max_health)
 
 func _on_start_timer_timeout() -> void:
 	boss.position = pos_1.global_position
@@ -91,6 +98,8 @@ func _on_start_timer_timeout() -> void:
 	shoot_timer.start(shot_cooldown)
 
 func _on_teleport_timer_timeout() -> void:
+	if player.died == true:
+		return
 	flash_ps.emitting = true
 	pre_flash_timer.start(0.1)
 	tp_sound.play()
@@ -116,6 +125,8 @@ func _on_pre_flash_timer_2_timeout() -> void:
 
 
 func _on_shoot_timer_timeout() -> void:
+	if player.died == true:
+		return
 	var bullet = bullet_scene.instantiate()
 	get_parent().add_child(bullet)
 	bullet.position = shoot_point.global_position
@@ -124,7 +135,13 @@ func _on_shoot_timer_timeout() -> void:
 	shots_fired += 1
 	shoot_sound.pitch_scale = randf_range(0.9, 1.2)
 	shoot_sound.play()
-	if shots_fired >= 3:
+	if shots_fired >= 4:
 		shots_fired = 0
 	else:
 		shoot_timer.start(shot_cooldown)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	body.queue_free()
+	health -= 1
+	update_health_bar()

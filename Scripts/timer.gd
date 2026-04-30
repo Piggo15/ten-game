@@ -13,6 +13,10 @@ var timer = 10.0
 
 var int_time = int(timer)
 
+func _ready() -> void:
+	if !timer_active:
+		display_label.text = ""
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	

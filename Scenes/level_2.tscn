@@ -25,7 +25,7 @@ environment = SubResource("Environment_xfk5q")
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_cggpd")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-level = 2
+level = "Level 2"
 
 [node name="Boxes" parent="." instance=ExtResource("3_cggpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032377243, 0.08947563, 0.02273941)
