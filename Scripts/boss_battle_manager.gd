@@ -156,9 +156,13 @@ func _on_pre_flash_timer_timeout() -> void:
 	teleport_timer_2.start(pre_teleport_time)
 
 func _on_teleport_timer_2_timeout() -> void:
-	var pos = positions_to_teleport_to[randi_range(0, positions_to_teleport_to.size() - 1)]
-	while pos == current_pos:
-		pos = positions_to_teleport_to[randi_range(0, positions_to_teleport_to.size() - 1)]
+	var closest_pos = find_closest_position()
+	var available_positions = positions_to_teleport_to.duplicate()
+	available_positions.erase(current_pos)
+	if current_pos != closest_pos:
+		available_positions.erase(closest_pos)
+	var pos = available_positions.pick_random()
+	
 	boss.position = pos.global_position
 	current_pos = pos
 	pre_flash_timer_2.start(0.1)
@@ -239,3 +243,16 @@ func _on_death_animation_timer_timeout() -> void:
 	explosions += 1
 	flash_ps.emitting = true
 	phase_2_start_sfx.play()
+
+func find_closest_position():
+	var closest_position = positions_to_teleport_to[0]
+	var distance = pow(closest_position.position.x - player.position.x, 2) +  pow(closest_position.position.z - player.position.z, 2)
+	for pos in positions_to_teleport_to:
+		
+		var current_pos_distance = pow(pos.position.x - player.position.x, 2) +  pow(pos.position.z - player.position.z, 2)
+		
+		if current_pos_distance < distance:
+			distance = current_pos_distance
+			closest_position = pos
+	
+	return closest_position

@@ -36,6 +36,7 @@ material = SubResource("StandardMaterial3D_v84pu")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 3
 lifetime = 0.75
+preprocess = 10.0
 speed_scale = 0.25
 fixed_fps = 240
 local_coords = true
