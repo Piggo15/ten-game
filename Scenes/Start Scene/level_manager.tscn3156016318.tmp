@@ -23,7 +23,6 @@ script = ExtResource("4_16vru")
 
 [node name="Control" type="Control" parent="Pause_Manager"]
 visible = false
-z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,4 +84,3 @@ theme_override_font_sizes/font_size = 32
 text = "Main Menu"
 
 [connection signal="pressed" from="Pause_Manager/Control/ResumeButton" to="Pause_Manager" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Pause_Manager/Control/MainMenuButton" to="Pause_Manager" method="_on_main_menu_button_pressed"]

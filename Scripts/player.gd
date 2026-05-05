@@ -30,6 +30,7 @@ var won = false
 @onready var timer = %Timer
 @onready var level_manager = get_tree().current_scene
 @onready var settings_manager = get_tree().current_scene.get_child(1)
+@onready var pause_manager = get_tree().current_scene.get_child(2)
 @onready var enemy_manager = %EnemyManager
 @onready var ui = $Control
 @onready var win_screen_scene = preload("res://Prefab Scenes/win_screen.tscn")
@@ -45,7 +46,7 @@ func _ready() -> void:
 	sensitivity = settings_manager.sensitivity
 
 func _unhandled_input(event: InputEvent) -> void:
-	if died or won:
+	if died or won or pause_manager.paused:
 		return
 		
 	if event is InputEventMouseMotion:
@@ -55,7 +56,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if died or won:
+	if died or won or pause_manager.paused:
 		return
 	
 	# Add the gravity.
@@ -134,6 +135,9 @@ func _on_hurtbox_body_entered(_body: Node3D) -> void:
 func die(message):
 	if won:
 		return
+	
+	pause_manager._on_resume_button_pressed()
+	
 	died = true
 	clear_game()
 	var death_screen = death_screen_scene.instantiate()
@@ -144,6 +148,8 @@ func die(message):
 func win():
 	if died:
 		return
+	
+	pause_manager._on_resume_button_pressed()
 	
 	won = true
 	clear_game()

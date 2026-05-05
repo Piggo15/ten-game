@@ -3,6 +3,7 @@ extends Node3D
 var scene_list = []
 var current_loaded_scene = null
 var current_loaded_scene_id = 0
+var level_1_scene_id = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

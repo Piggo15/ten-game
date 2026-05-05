@@ -10,6 +10,7 @@ var max_ammo
 @onready var sfx_player = $ShootSound
 @onready var ammo_label  = $"../Control/AmmoLabel"
 @onready var player = get_parent()
+@onready var pause_manager = get_tree().current_scene.get_child(2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("shoot") and ammo_amount > 0 and !player.died and !player.won:
+	if Input.is_action_just_pressed("shoot") and ammo_amount > 0 and !player.died and !player.won and !pause_manager.paused:
 		var bullet = bullet_scene.instantiate()
 		get_parent().get_parent().add_child(bullet)
 		bullet.position = bullet_spawn_position.global_position
