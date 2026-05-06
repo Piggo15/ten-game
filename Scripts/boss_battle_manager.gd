@@ -129,7 +129,11 @@ func _on_music_finished():
 
 func _process(_delta: float) -> void:
 	if boss_body != null:
-		boss_body.look_at (player.global_position, Vector3.UP)
+		var distance_to_player = shoot_point.global_position.distance_to(player.global_position)
+		var bullet_speed = shooter_force
+		var bullet_travel_time = distance_to_player / bullet_speed
+		var predicted_player_future_position = player.global_position + (player.velocity * bullet_travel_time)
+		boss_body.look_at (predicted_player_future_position, Vector3.UP)
 	if player.died == true:
 		music_player.stop()
 
