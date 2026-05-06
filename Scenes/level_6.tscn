@@ -46,13 +46,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0062065, 11.894138, -12.00
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8386545, 6.858185, -14.950953)
 
 [node name="Enemy4" parent="EnemyManager" instance=ExtResource("6_cnikc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.924255, 8.898811, 0.114607096)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4242554, 6.3988113, -4.385393)
 
 [node name="Enemy5" parent="EnemyManager" instance=ExtResource("6_cnikc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1971445, 11.858185, 14.975573)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6971445, 4.858185, -14.024427)
 
 [node name="Enemy6" parent="EnemyManager" instance=ExtResource("6_cnikc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1971445, 11.858185, 14.975573)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.932263, 5.448512, -3.4665308)
 
 [node name="Control" type="Control" parent="EnemyManager"]
 layout_mode = 3

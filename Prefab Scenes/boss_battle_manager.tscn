@@ -75,11 +75,13 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2898598, 0)
 shape = SubResource("CapsuleShape3D_5ajqb")
 
-[node name="Shoot_Point" type="Node3D" parent="Boss/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
-
 [node name="Robot" parent="Boss/Area3D" instance=ExtResource("2_cucxh")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -5, 0)
+
+[node name="Shoot_Parent" type="Node3D" parent="Boss/Area3D"]
+
+[node name="Shoot_Point" type="Node3D" parent="Boss/Area3D/Shoot_Parent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
 [node name="Robot_Hover_PS" parent="Boss" instance=ExtResource("4_puv5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
@@ -172,12 +174,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 9, 0)
 
 [node name="GoonPos4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, -11)
-
-[node name="GoonPos5" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6, 6)
-
-[node name="GoonPos6" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 12)
 
 [node name="GoonSpawnTimer" type="Timer" parent="."]
 one_shot = true

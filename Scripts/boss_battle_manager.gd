@@ -21,7 +21,7 @@ var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 @onready var pre_flash_timer_2: Timer = $PreFlashTimer2
 @onready var tp_sound: AudioStreamPlayer3D = $Boss/TP_Sound
 @onready var shoot_timer: Timer = $ShootTimer
-@onready var shoot_point: Node3D = $Boss/Area3D/Shoot_Point
+@onready var shoot_point: Node3D = $Boss/Area3D/Shoot_Parent/Shoot_Point
 @onready var shoot_sound: AudioStreamPlayer3D = $Boss/Shoot_Sound
 @onready var health_bar: ColorRect = $Control/Health_Bar
 @onready var start_timer: Timer = $Start_Timer
@@ -32,6 +32,7 @@ var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 @onready var robot_hover_ps: Node3D = $Boss/Robot_Hover_PS
 @onready var area_3d: Area3D = $Boss/Area3D
 @onready var control: Control = $Control
+@onready var shoot_parent: Node3D = $Boss/Area3D/Shoot_Parent
 
 var current_stage = 1
 var current_audio_state = 0
@@ -48,10 +49,8 @@ var current_audio_state = 0
 @onready var goon_pos_2: Node3D = $GoonPos2
 @onready var goon_pos_3: Node3D = $GoonPos3
 @onready var goon_pos_4: Node3D = $GoonPos4
-@onready var goon_pos_5: Node3D = $GoonPos5
-@onready var goon_pos_6: Node3D = $GoonPos6
 
-@onready var goon_positions = [goon_pos_1, goon_pos_2, goon_pos_3, goon_pos_4, goon_pos_5, goon_pos_6]
+@onready var goon_positions = [goon_pos_1, goon_pos_2, goon_pos_3, goon_pos_4]
 const GOON = preload("uid://6f6gqhuxf2it")
 
 var current_spawned_goon = 0
@@ -73,6 +72,7 @@ var shots_fired = 0
 var shooter_force = 60
 var shots_per_teleport = 4
 var shots_per_teleport_phase_2 = 6
+var inacuracy_cone_raduis = 7.0
 
 @onready var flash_ps: GPUParticles3D = $Boss/Flash_PS
 
@@ -183,6 +183,9 @@ func _on_shoot_timer_timeout() -> void:
 		return
 	var bullet = bullet_scene.instantiate()
 	get_parent().add_child(bullet)
+	var innacuracy_x = randf_range(-inacuracy_cone_raduis, inacuracy_cone_raduis) 
+	var innacuracy_z = randf_range(-inacuracy_cone_raduis, inacuracy_cone_raduis) 
+	shoot_parent.rotation = Vector3(deg_to_rad(innacuracy_x), 0, deg_to_rad(innacuracy_z))
 	bullet.position = shoot_point.global_position
 	var rb = bullet.get_child(0)
 	rb.apply_central_impulse(-shoot_point.global_transform.basis.z * shooter_force)

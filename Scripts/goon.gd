@@ -4,8 +4,9 @@ extends Node3D
 @onready var area_3D = $Area3D
 @onready var death_sfx = $DeathSound
 @onready var shoot_sfx = $ShootSound
-@onready var bullet_spawn_position = $Area3D/ShootPoint
+@onready var bullet_spawn_position = $Area3D/ShootParent/ShootPoint
 @onready var robot_hover_ps = $Robot_Hover_PS
+@onready var shoot_parent: Node3D = $Area3D/ShootParent
 
 var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 var is_alive = true
@@ -14,25 +15,36 @@ var is_alive = true
 @export var shoot_timer = 1.0
 @export var additional_random_time_mult = 0.5
 @export var shooter_force = 60
+var inacuracy_cone_raduis = 7.0
+
+var player
 
 func _ready() -> void:
 	flash_ps.emitting = true
 	shoot_timer = randf_range(1, 4)
+	player = get_parent().get_parent().player
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	die(body)
 
 func _process(delta: float) -> void:
 	
-	if !is_alive or get_parent().get_parent().player.died or get_parent().get_parent().player.won:
+	if !is_alive or player.died or player.won:
 		return
 	
-	area_3D.look_at(get_parent().get_parent().player.global_position, Vector3.UP)
+	var distance_to_player = bullet_spawn_position.global_position.distance_to(player.global_position)
+	var bullet_speed = shooter_force
+	var bullet_travel_time = distance_to_player / bullet_speed
+	var predicted_future_player_position = player.global_position + (player.velocity * bullet_travel_time)
+	area_3D.look_at(predicted_future_player_position, Vector3.UP)
 	
 	shoot_timer -= delta
 	if shoot_timer <= 0:
 		var bullet = bullet_scene.instantiate()
 		get_parent().get_parent().add_child(bullet)
+		var innacuracy_x = randf_range(-inacuracy_cone_raduis, inacuracy_cone_raduis) 
+		var innacuracy_z = randf_range(-inacuracy_cone_raduis, inacuracy_cone_raduis) 
+		shoot_parent.rotation = Vector3(deg_to_rad(innacuracy_x), 0, deg_to_rad(innacuracy_z))
 		bullet.position = bullet_spawn_position.global_position
 		var rb = bullet.get_child(0)
 		rb.apply_central_impulse(-bullet_spawn_position.global_transform.basis.z * shooter_force)
