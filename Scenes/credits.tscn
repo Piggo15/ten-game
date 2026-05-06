@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfy2conf35mm6"]
+[gd_scene load_steps=3 format=3 uid="uid://bfy2conf35mm6"]
 
 [ext_resource type="Script" uid="uid://y5wtqcp83xl4" path="res://Scripts/credits.gd" id="1_r18jl"]
+[ext_resource type="Texture2D" uid="uid://bar7caa0ckaov" path="res://Textures/UI_Bgrd.png" id="2_gryuy"]
 
 [node name="Credits" type="Node3D"]
 script = ExtResource("1_r18jl")
@@ -13,29 +14,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gryuy")
+
 [node name="CreditsLabel" type="Label" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -109.0
+offset_top = 83.0
+offset_right = 110.0
+offset_bottom = 171.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "Credits"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 144.0
-offset_right = 1128.0
-offset_bottom = 573.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.5
+offset_top = -214.5
+offset_right = 282.5
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.99874544, 1)
 theme_override_font_sizes/font_size = 16
 text = "Game By Cole Hauser
 
 Made for 2026 Tech High Game / Sim Game Jam
 
-Softwares: Godot, GIMP, BandLab, Audacity,  JSFXR
+Softwares: Godot, GIMP, BandLab, Audacity,  JSFXR, Piskel
 
-Special Thanks: Ronald Flowers (Mentor), Cameron Galiano \"Zinklof\" 
-(Mentor), David Hundley (Helped With the Title), Daliah Tyson (Emotional 
+Special Thanks: Ronald Flowers (Mentor), 
+Cameron Galiano \"Zinklof\" 
+(Mentor), 
+David Hundley (Helped With the Title), 
+Daliah Tyson (Emotional 
 Support)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="Label2" type="Label" parent="Control"]
 layout_mode = 1
@@ -53,11 +84,15 @@ text = "© 2026 Cole Hauser. All Rights Reserved"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 829.0
-offset_top = 90.0
-offset_right = 1032.0
-offset_bottom = 143.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 488.0
+offset_right = 102.0
+offset_bottom = 541.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Back To Title"
 

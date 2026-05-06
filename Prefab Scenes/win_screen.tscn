@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://xmunvder150u"]
+[gd_scene load_steps=3 format=3 uid="uid://xmunvder150u"]
 
 [ext_resource type="Script" uid="uid://c7bohb383b3ta" path="res://Scripts/win_screen.gd" id="1_xufud"]
+[ext_resource type="Texture2D" uid="uid://bar7caa0ckaov" path="res://Textures/UI_Bgrd.png" id="2_j5dm2"]
 
 [node name="WinScreen" type="Node3D"]
 script = ExtResource("1_xufud")
@@ -13,14 +14,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.4509804)
+texture = ExtResource("2_j5dm2")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
@@ -28,8 +29,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -65.0
+offset_top = 157.0
 offset_right = 65.0
-offset_bottom = 88.0
+offset_bottom = 245.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "WIN"
@@ -42,9 +44,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -166.0
-offset_top = -48.0
+offset_top = 76.0
 offset_right = 166.0
-offset_bottom = 48.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
