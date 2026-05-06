@@ -6,6 +6,7 @@ extends Node3D
 @onready var bullet_spawn_position = $Area3D/ShootPoint
 @onready var robot_hover_ps = $Robot_Hover_PS
 @onready var enemy_manager = get_parent()
+@onready var player = %CharacterBody3D
 
 var bullet_scene = preload("res://Prefab Scenes/enemy_bulllet.tscn")
 var is_alive = true
@@ -27,7 +28,11 @@ func _process(delta: float) -> void:
 	if !is_alive:
 		return
 	
-	area_3D.look_at(%CharacterBody3D.global_position, Vector3.UP)
+	var distance_to_player = bullet_spawn_position.global_position.distance_to(player.global_position)
+	var bullet_speed = shooter_force
+	var bullet_travel_time = distance_to_player / bullet_speed
+	var predicted_future_player_position = player.global_position + (player.velocity * bullet_travel_time)
+	area_3D.look_at(predicted_future_player_position, Vector3.UP)
 	
 	shoot_timer -= delta
 	if shoot_timer <= 0:
