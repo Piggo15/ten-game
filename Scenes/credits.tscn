@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfy2conf35mm6"]
+[gd_scene load_steps=7 format=3 uid="uid://bfy2conf35mm6"]
 
 [ext_resource type="Script" uid="uid://y5wtqcp83xl4" path="res://Scripts/credits.gd" id="1_r18jl"]
 [ext_resource type="Texture2D" uid="uid://bar7caa0ckaov" path="res://Textures/UI_Bgrd.png" id="2_gryuy"]
+[ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="3_ccovl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bamb"]
+font = ExtResource("3_ccovl")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_xelri"]
+font = ExtResource("3_ccovl")
+
+[sub_resource type="LabelSettings" id="LabelSettings_uah1q"]
+font = ExtResource("3_ccovl")
 
 [node name="Credits" type="Node3D"]
 script = ExtResource("1_r18jl")
@@ -28,13 +39,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -109.0
-offset_top = 83.0
-offset_right = 110.0
-offset_bottom = 171.0
+offset_left = -134.0
+offset_top = 105.0
+offset_right = 135.0
+offset_bottom = 193.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "Credits"
+label_settings = SubResource("LabelSettings_1bamb")
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Control"]
@@ -44,9 +56,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -282.5
+offset_left = -245.0
 offset_top = -214.5
-offset_right = 282.5
+offset_right = 245.0
 offset_bottom = 214.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -56,16 +68,18 @@ text = "Game By Cole Hauser
 
 Made for 2026 Tech High Game / Sim Game Jam
 
+Font \"Home Video\" By GGBOTNET, Liscensed under CC-0
+
 Softwares: Godot, GIMP, BandLab, Audacity,  JSFXR, Piskel
 
 Special Thanks: Ronald Flowers (Mentor), 
-Cameron Galiano \"Zinklof\" 
-(Mentor), 
+Cameron Galiano \"Zinklof\" (Mentor), 
 David Hundley (Helped With the Title), 
-Daliah Tyson (Emotional 
-Support)"
+Daliah Tyson (Emotional Support)"
+label_settings = SubResource("LabelSettings_xelri")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 autowrap_trim_flags = 128
 
 [node name="Label2" type="Label" parent="Control"]
@@ -81,6 +95,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "© 2026 Cole Hauser. All Rights Reserved"
+label_settings = SubResource("LabelSettings_uah1q")
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="Control"]
@@ -88,11 +103,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -101.0
-offset_top = 488.0
-offset_right = 102.0
-offset_bottom = 541.0
+offset_left = -128.0
+offset_top = 475.0
+offset_right = 130.0
+offset_bottom = 528.0
 grow_horizontal = 2
+scale = Vector2(1, 1.0068086)
+theme_override_fonts/font = ExtResource("3_ccovl")
 theme_override_font_sizes/font_size = 32
 text = "Back To Title"
 

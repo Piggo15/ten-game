@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnxo0c8xmstsq"]
+[gd_scene load_steps=4 format=3 uid="uid://dnxo0c8xmstsq"]
 
 [ext_resource type="Script" uid="uid://d1tplm8twv85g" path="res://Scripts/settings_menu.gd" id="1_4geyq"]
 [ext_resource type="Texture2D" uid="uid://bar7caa0ckaov" path="res://Textures/UI_Bgrd.png" id="2_i44u3"]
+[ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="3_lhmql"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -31,6 +32,7 @@ offset_top = 115.0
 offset_right = 124.0
 offset_bottom = 203.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_lhmql")
 theme_override_font_sizes/font_size = 64
 text = "Settings"
 
@@ -58,7 +60,10 @@ offset_left = -128.0
 offset_top = -4.0
 offset_right = -48.0
 offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("3_lhmql")
 text = "Sensitivity"
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="HSlider_Master_Volume" type="HSlider" parent="."]
 layout_mode = 1
@@ -82,7 +87,10 @@ offset_left = -128.0
 offset_top = -4.0
 offset_right = -10.0
 offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("3_lhmql")
 text = "Master Volume"
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="HSlider_Sfx_Volume" type="HSlider" parent="."]
 layout_mode = 1
@@ -106,7 +114,10 @@ offset_left = -128.0
 offset_top = -4.0
 offset_right = -48.0
 offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("3_lhmql")
 text = "SFX Volume"
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="HSlider_Music_Volume" type="HSlider" parent="."]
 layout_mode = 1
@@ -130,7 +141,10 @@ offset_left = -128.0
 offset_top = -4.0
 offset_right = -48.0
 offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("3_lhmql")
 text = "Music Volume"
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="CheckBox_Vsync" type="CheckBox" parent="."]
 layout_mode = 1
@@ -152,7 +166,10 @@ layout_mode = 0
 offset_left = -128.0
 offset_right = -88.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_lhmql")
 text = "Vsync"
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="BackToMainMenu" type="Button" parent="."]
 layout_mode = 1
@@ -167,6 +184,7 @@ offset_right = 102.0
 offset_bottom = -119.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_lhmql")
 theme_override_font_sizes/font_size = 32
 text = "Back To Title"
 

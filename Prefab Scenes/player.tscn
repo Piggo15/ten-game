@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlg6seov50do7"]
+[gd_scene load_steps=12 format=3 uid="uid://dlg6seov50do7"]
 
 [ext_resource type="Script" uid="uid://o4w4rkpe4e2p" path="res://Scripts/player.gd" id="1_6wh1l"]
 [ext_resource type="Script" uid="uid://ub0mij42ktyu" path="res://Scripts/shooter.gd" id="2_b6oax"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ckfq3su1rdxxw" path="res://Audio/Sfx/Jump_Sfx.wav" id="5_enq36"]
 [ext_resource type="AudioStream" uid="uid://d2fh40ai0becw" path="res://Audio/Sfx/Death_Sfx.wav" id="6_8vk5p"]
 [ext_resource type="AudioStream" uid="uid://bnq6m1uhxt116" path="res://Audio/Sfx/Win_Sfx.wav" id="7_5js5u"]
+[ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="9_frrj4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7kb5"]
 
@@ -89,18 +90,22 @@ offset_left = 32.0
 offset_top = 16.0
 offset_right = 237.0
 offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("9_frrj4")
 theme_override_font_sizes/font_size = 32
 text = "Ammo: 10/10"
+horizontal_alignment = 1
 
 [node name="LevelLabel" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -67.0
+offset_top = 16.0
+offset_right = 67.0
+offset_bottom = 46.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_frrj4")
 theme_override_font_sizes/font_size = 32
 text = "Level ?"
 horizontal_alignment = 1

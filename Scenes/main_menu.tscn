@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://drph8xnn8u4fk"]
+[gd_scene load_steps=14 format=3 uid="uid://drph8xnn8u4fk"]
 
 [ext_resource type="Script" uid="uid://ch1w7kgs2c1ma" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="PackedScene" uid="uid://barr5lka2oxr6" path="res://Prefab Scenes/boxes.tscn" id="2_48xlc"]
+[ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="2_opfnp"]
 [ext_resource type="PackedScene" uid="uid://deqqmb0ud3rx3" path="res://Mesh/robot_mesh_inherited.tscn" id="3_opfnp"]
 [ext_resource type="Script" uid="uid://di4bg60x30614" path="res://Scripts/enemy_bob.gd" id="4_ce3w2"]
 [ext_resource type="PackedScene" uid="uid://b1ddqmf33pc36" path="res://Prefab Scenes/robot_hover_ps.tscn" id="5_n45e2"]
@@ -53,8 +54,11 @@ offset_left = -228.5
 offset_right = 228.5
 offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_opfnp")
 theme_override_font_sizes/font_size = 64
 text = "Bullet X-Treme"
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="StartButton" type="Button" parent="Control"]
 layout_mode = 1
@@ -63,30 +67,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -79.0
+offset_left = -157.5
 offset_top = -48.0
-offset_right = 79.0
+offset_right = 157.5
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_opfnp")
 theme_override_font_sizes/font_size = 64
 text = "Start"
-
-[node name="CreditsButton" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -113.5
-offset_top = 146.0
-offset_right = 113.5
-offset_bottom = 242.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "Credits"
+autowrap_mode = 1
 
 [node name="SettingsButton" type="Button" parent="Control"]
 layout_mode = 1
@@ -95,14 +85,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = 49.0
-offset_right = 128.0
-offset_bottom = 145.0
+offset_left = -157.5
+offset_top = 64.0
+offset_right = 157.5
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_opfnp")
 theme_override_font_sizes/font_size = 64
 text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.5
+offset_top = 176.0
+offset_right = 157.5
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_opfnp")
+theme_override_font_sizes/font_size = 64
+text = "Credits"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_48xlc")
@@ -142,5 +150,5 @@ mesh = SubResource("SphereMesh_ce3w2")
 surface_material_override/0 = SubResource("StandardMaterial3D_n45e2")
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Control/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Control/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Control/CreditsButton" to="." method="_on_credits_button_pressed"]

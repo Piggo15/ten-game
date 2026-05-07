@@ -72,7 +72,7 @@ var shots_fired = 0
 var shooter_force = 60
 var shots_per_teleport = 4
 var shots_per_teleport_phase_2 = 6
-var inacuracy_cone_raduis = 7.0
+var inacuracy_cone_raduis = 9.0
 
 @onready var flash_ps: GPUParticles3D = $Boss/Flash_PS
 
@@ -232,7 +232,7 @@ func _on_goon_spawn_timer_timeout() -> void:
 	var goon = GOON.instantiate()
 	goon_positions[current_spawned_goon].add_child(goon)
 	current_spawned_goon += 1
-	if current_spawned_goon < 6:
+	if current_spawned_goon < goon_positions.size() - 1:
 		goon_spawn_timer.start(0.25)
 
 var explosions = 0

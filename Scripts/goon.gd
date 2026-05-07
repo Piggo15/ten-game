@@ -15,7 +15,7 @@ var is_alive = true
 @export var shoot_timer = 1.0
 @export var additional_random_time_mult = 0.5
 @export var shooter_force = 60
-var inacuracy_cone_raduis = 7.0
+var inacuracy_cone_raduis = 9.0
 
 var player
 
