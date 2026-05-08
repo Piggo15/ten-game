@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkt8nmcxmuk1w"]
+[gd_scene load_steps=9 format=3 uid="uid://bkt8nmcxmuk1w"]
 
 [ext_resource type="Script" uid="uid://tkxuekqneqpe" path="res://Scripts/level_manager.gd" id="1_f6wcy"]
 [ext_resource type="AudioStream" uid="uid://b7dcb6cgu284m" path="res://Audio/Music/Main_Menu_Music.wav" id="2_2up0c"]
 [ext_resource type="Script" uid="uid://bsn1fmuue1qq8" path="res://Scripts/settings.gd" id="3_qahu7"]
-[ext_resource type="Script" uid="uid://uadoevnkwo1m" path="res://Scripts/pause_manager.gd" id="4_16vru"]
-[ext_resource type="Texture2D" uid="uid://bar7caa0ckaov" path="res://Textures/UI_Bgrd.png" id="5_qmot7"]
+[ext_resource type="Script" path="res://Scripts/pause_manager.gd" id="4_16vru"]
+[ext_resource type="Shader" uid="uid://cja08omtdo21e" path="res://Shaders/death_screen.gdshader" id="5_mm84j"]
 [ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="6_mm84j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elnb1"]
+shader = ExtResource("5_mm84j")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nolu6"]
 
 [node name="Level_Manager" type="Node3D"]
 script = ExtResource("1_f6wcy")
@@ -35,13 +40,14 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Pause_Manager/Control"]
 modulate = Color(1, 1, 1, 0.9411765)
+material = SubResource("ShaderMaterial_elnb1")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_qmot7")
+texture = SubResource("ViewportTexture_nolu6")
 
 [node name="Label" type="Label" parent="Pause_Manager/Control"]
 layout_mode = 1

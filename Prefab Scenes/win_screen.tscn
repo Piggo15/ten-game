@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://xmunvder150u"]
+[gd_scene load_steps=6 format=3 uid="uid://xmunvder150u"]
 
 [ext_resource type="Script" uid="uid://c7bohb383b3ta" path="res://Scripts/win_screen.gd" id="1_xufud"]
-[ext_resource type="Texture2D" uid="uid://bar7caa0ckaov" path="res://Textures/UI_Bgrd.png" id="2_j5dm2"]
+[ext_resource type="Shader" uid="uid://cja08omtdo21e" path="res://Shaders/death_screen.gdshader" id="2_nx81w"]
 [ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="3_nx81w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d78xa"]
+shader = ExtResource("2_nx81w")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h33ql"]
 
 [node name="WinScreen" type="Node3D"]
 script = ExtResource("1_xufud")
@@ -16,13 +21,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_d78xa")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_j5dm2")
+texture = SubResource("ViewportTexture_h33ql")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
