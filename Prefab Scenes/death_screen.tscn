@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://13rxnx3lcplg"]
+[gd_scene load_steps=6 format=3 uid="uid://13rxnx3lcplg"]
 
 [ext_resource type="Script" uid="uid://bp6i480le6mpv" path="res://Scripts/death_screen.gd" id="1_smd1q"]
-[ext_resource type="Texture2D" uid="uid://bar7caa0ckaov" path="res://Textures/UI_Bgrd.png" id="2_w08ik"]
+[ext_resource type="Shader" uid="uid://cja08omtdo21e" path="res://Shaders/death_screen.gdshader" id="2_oide0"]
 [ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="3_oide0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ethp8"]
+shader = ExtResource("2_oide0")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_758ki"]
 
 [node name="DeathScreen" type="Node3D"]
 script = ExtResource("1_smd1q")
@@ -16,13 +21,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_ethp8")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_w08ik")
+texture = SubResource("ViewportTexture_758ki")
 
 [node name="ResetButton" type="Button" parent="Control"]
 layout_mode = 1
