@@ -15,24 +15,25 @@ sky_material = SubResource("ProceduralSkyMaterial_28flt")
 [sub_resource type="Environment" id="Environment_48xlc"]
 background_mode = 2
 sky = SubResource("Sky_8ffim")
+glow_enabled = true
 
-[sub_resource type="SphereMesh" id="SphereMesh_1ehe0"]
+[sub_resource type="SphereMesh" id="SphereMesh_opfnp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce3w2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cp0ys"]
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_color = Color(0.8784314, 0, 0, 1)
 emission_enabled = true
-emission = Color(1, 0.4392157, 0.4392157, 1)
+emission = Color(5.7063603, 0.33368224, 0.33368224, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_ce3w2"]
+[sub_resource type="SphereMesh" id="SphereMesh_yhxw7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n45e2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trj04"]
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_color = Color(0.1882353, 0.68235296, 0, 1)
+albedo_color = Color(0, 1, 0, 1)
 emission_enabled = true
-emission = Color(0.1882353, 0.68235296, 0, 1)
+emission = Color(0.44213426, 9.570732, 0.44213426, 1)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_28flt")
@@ -136,18 +137,21 @@ transform = Transform3D(-0.9835714, 0, -0.18051925, 0.03753206, 0.97814745, -0.2
 
 [node name="BulletMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 10.5, 7, 3.5)
-mesh = SubResource("SphereMesh_1ehe0")
-surface_material_override/0 = SubResource("StandardMaterial3D_ce3w2")
+mesh = SubResource("SphereMesh_opfnp")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_cp0ys")
 
 [node name="BulletMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 14.5, 7, 3)
-mesh = SubResource("SphereMesh_1ehe0")
-surface_material_override/0 = SubResource("StandardMaterial3D_ce3w2")
+mesh = SubResource("SphereMesh_opfnp")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_cp0ys")
 
 [node name="BulletMesh3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 13.5, 7, 3.5)
-mesh = SubResource("SphereMesh_ce3w2")
-surface_material_override/0 = SubResource("StandardMaterial3D_n45e2")
+mesh = SubResource("SphereMesh_yhxw7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_trj04")
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/SettingsButton" to="." method="_on_settings_button_pressed"]
