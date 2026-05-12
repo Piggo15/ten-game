@@ -4,14 +4,18 @@ extends Node3D
 @onready var control: Control = $Control
 
 var paused = false
+var player_won_or_died = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if level_manager.current_loaded_scene_id < level_manager.level_1_scene_id:
 		return
 	
-	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+	if player_won_or_died or paused:
 		return
+	
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		pause()
 	
 	if Input.is_action_just_pressed("pause"):
 		pause()

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://tkxuekqneqpe" path="res://Scripts/level_manager.gd" id="1_f6wcy"]
 [ext_resource type="AudioStream" uid="uid://b7dcb6cgu284m" path="res://Audio/Music/Main_Menu_Music.wav" id="2_2up0c"]
 [ext_resource type="Script" uid="uid://bsn1fmuue1qq8" path="res://Scripts/settings.gd" id="3_qahu7"]
-[ext_resource type="Script" path="res://Scripts/pause_manager.gd" id="4_16vru"]
+[ext_resource type="Script" uid="uid://uadoevnkwo1m" path="res://Scripts/pause_manager.gd" id="4_16vru"]
 [ext_resource type="Shader" uid="uid://cja08omtdo21e" path="res://Shaders/death_screen.gdshader" id="5_mm84j"]
 [ext_resource type="FontFile" uid="uid://cegy265dsc4u8" path="res://Font/HomeVideo-BLG6G.ttf" id="6_mm84j"]
 
