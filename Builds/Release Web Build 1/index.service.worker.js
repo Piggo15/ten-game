@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1778600825|637721731';
+const CACHE_VERSION = '1778599258|208511899';
 /** @type {string} */
 const CACHE_PREFIX = 'Bullet X-Treme-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;

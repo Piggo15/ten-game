@@ -44,7 +44,6 @@ func _ready() -> void:
 	level_label.text = level
 	camera_position.rotation.y = start_y_rotation
 	sensitivity = settings_manager.sensitivity
-	pause_manager.player_won_or_died = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if died or won or pause_manager.paused:
@@ -54,6 +53,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_position.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+
+func _process(_delta: float) -> void:
+	if died or won or pause_manager.paused:
+		return
+	
+	if Input.is_action_just_pressed("shoot"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
 	
@@ -137,7 +143,6 @@ func die(message):
 	if won:
 		return
 	
-	pause_manager.player_won_or_died = true
 	pause_manager._on_resume_button_pressed()
 	
 	died = true
@@ -151,7 +156,6 @@ func win():
 	if died:
 		return
 	
-	pause_manager.player_won_or_died = true
 	pause_manager._on_resume_button_pressed()
 	
 	won = true
